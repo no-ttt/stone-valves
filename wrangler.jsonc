@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "stone-valves-web",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-09-14",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  // D1（文章、產品、前台文字）與 R2（圖片）在下一階段接上後台時再加入。
+  // 目前內容放在 content/ 的資料檔，圖片放在 public/images/。
+
+  // 上面的設定就是正式環境（production）；不加 --env 的 wrangler 指令一律作用在正式環境。
+  // staging 是另一個獨立的 Worker，用 `npm run cf:deploy:staging` 部署，
+  // 建置時帶 SITE_ENV=staging，所有頁面會回傳 noindex（見 next.config.ts）。
+  "env": {
+    "staging": {
+      "name": "stone-valves-web-staging",
+      "preview_urls": false
+    }
+  }
+}

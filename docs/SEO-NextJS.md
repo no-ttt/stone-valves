@@ -397,7 +397,6 @@ export default function robots(): MetadataRoute.Robots {
 }
 ```
 
-> 舊站的 `origin/` 備份資料夾**不要**搬進 `public/`，以免產生重複內容。
 
 ---
 
