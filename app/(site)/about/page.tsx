@@ -79,16 +79,17 @@ export default async function AboutPage() {
       <section
         className="motto-band"
         style={{
-          backgroundImage: `linear-gradient(90deg,rgba(15,44,36,.95) 0%,rgba(15,44,36,.85) 55%,rgba(15,44,36,.55) 100%),url('${imageUrl(c["about.motto.image"])}')`,
+          backgroundImage: `linear-gradient(90deg,rgba(19,38,31,.95) 0%,rgba(19,38,31,.85) 55%,rgba(19,38,31,.55) 100%),url('${imageUrl(c["about.motto.image"])}')`,
         }}
       >
         <div className="motto-inner">
           <div className="eyebrow">經營理念</div>
           <blockquote>
-            <Lines text={c["about.motto.quote"]} />
+            {/* 經營理念固定排成一行，後台填的換行忽略 */}
+            {c["about.motto.quote"].replace(/\s*\n\s*/g, "")}
           </blockquote>
           <p>
-            <Lines text={c["about.motto.body"]} />
+            {c["about.motto.body"].replace(/\s*\n\s*/g, "")}
           </p>
         </div>
       </section>

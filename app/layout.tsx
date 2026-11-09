@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#163D32",
+  themeColor: "#1E3932",
 };
 
 /** 前台在 app/(site)，後台在 app/admin，各自有自己的版面與樣式 */

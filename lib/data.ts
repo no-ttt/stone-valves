@@ -1,10 +1,35 @@
 import { cache } from "react";
+import { unstable_cache } from "next/cache";
 import { and, asc, desc, eq, lt, gt } from "drizzle-orm";
 import { getDb } from "@/lib/db/client";
 import { pageContent, posts, productCategories, products, redirects, showcaseItems } from "@/lib/db/schema";
+import { CACHE_TAGS } from "@/lib/cache-tags";
 import { CONTENT_DEFAULTS, isContentKey, type Content } from "@/lib/content-fields";
 
-// 前台用的讀取函式。用 React cache() 包起來，同一次請求裡重複呼叫只查一次資料庫。
+// 前台用的讀取函式。
+// - unstable_cache：查詢結果存進快取，之後的訪客直接讀快取，不再查資料庫。
+//   沒有時間到期，只在後台存檔時用標籤清掉（見 lib/cache-tags.ts）。
+// - React cache()：同一次請求裡重複呼叫只算一次。
+
+/** 快取裡的資料是 JSON，日期會變成字串；讀回來時轉回 Date */
+const DATE_KEYS = new Set(["publishedAt", "createdAt", "updatedAt"]);
+function reviveDates<T>(value: T): T {
+  if (Array.isArray(value)) return value.map(reviveDates) as T;
+  if (value && typeof value === "object" && !(value instanceof Date)) {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(value)) {
+      out[k] = DATE_KEYS.has(k) && typeof v === "string" ? new Date(v) : reviveDates(v);
+    }
+    return out as T;
+  }
+  return value;
+}
+
+/** 把查詢包成「有快取、有標籤」的版本 */
+function cached<A extends unknown[], R>(key: string, tags: string[], fn: (...args: A) => Promise<R>) {
+  const stored = unstable_cache(fn, [key], { tags });
+  return cache(async (...args: A): Promise<R> => reviveDates(await stored(...args)));
+}
 
 export type CategoryRow = typeof productCategories.$inferSelect;
 export type ProductRow = typeof products.$inferSelect;
@@ -12,7 +37,7 @@ export type PostRow = typeof posts.$inferSelect;
 export type PostSummary = Omit<PostRow, "contentHtml">;
 
 /** 前台文字：資料庫有值就用資料庫的，否則用 lib/content-fields.ts 的預設值 */
-export const getContent = cache(async (): Promise<Content> => {
+export const getContent = cached("content", [CACHE_TAGS.content], async (): Promise<Content> => {
   const db = await getDb();
   const rows = await db.select({ key: pageContent.key, value: pageContent.value }).from(pageContent).all();
   const content = { ...CONTENT_DEFAULTS };
@@ -20,7 +45,7 @@ export const getContent = cache(async (): Promise<Content> => {
   return content;
 });
 
-export const getCategories = cache(async (): Promise<(CategoryRow & { productCount: number })[]> => {
+export const getCategories = cached("categories", [CACHE_TAGS.categories], async (): Promise<(CategoryRow & { productCount: number })[]> => {
   const db = await getDb();
   const [cats, prods] = await Promise.all([
     db.select().from(productCategories).orderBy(asc(productCategories.sortOrder)).all(),
@@ -29,7 +54,7 @@ export const getCategories = cache(async (): Promise<(CategoryRow & { productCou
   return cats.map((c) => ({ ...c, productCount: prods.filter((p) => p.categorySlug === c.slug).length }));
 });
 
-export const getCategory = cache(async (slug: string) => {
+export const getCategory = cached("category", [CACHE_TAGS.categories], async (slug: string) => {
   const db = await getDb();
   const category = await db.select().from(productCategories).where(eq(productCategories.slug, slug)).get();
   if (!category) return null;
@@ -42,7 +67,7 @@ export const getCategory = cache(async (slug: string) => {
   return { ...category, products: items };
 });
 
-export const getShowcase = cache(async () => {
+export const getShowcase = cached("showcase", [CACHE_TAGS.showcase], async () => {
   const db = await getDb();
   return db.select().from(showcaseItems).orderBy(asc(showcaseItems.sortOrder), asc(showcaseItems.id)).all();
 });
@@ -67,7 +92,7 @@ const summaryColumns = {
 };
 
 /** 已發布的文章，新到舊 */
-export const getPublishedPosts = cache(async (limit?: number): Promise<PostSummary[]> => {
+export const getPublishedPosts = cached("posts", [CACHE_TAGS.posts], async (limit?: number): Promise<PostSummary[]> => {
   const db = await getDb();
   const q = db
     .select(summaryColumns)
@@ -78,7 +103,7 @@ export const getPublishedPosts = cache(async (limit?: number): Promise<PostSumma
 });
 
 /** 已發布的單篇文章，以及前後篇 */
-export const getPublishedPost = cache(async (slug: string) => {
+export const getPublishedPost = cached("post", [CACHE_TAGS.posts], async (slug: string) => {
   const db = await getDb();
   const post = await db
     .select()

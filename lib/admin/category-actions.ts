@@ -1,7 +1,9 @@
 "use server";
 
+import { updateTag } from "next/cache";
 import { asc, eq } from "drizzle-orm";
 import { requireAdmin } from "@/lib/auth/session";
+import { CACHE_TAGS } from "@/lib/cache-tags";
 import { getDb } from "@/lib/db/client";
 import { productCategories, products, showcaseItems } from "@/lib/db/schema";
 import { ContentError, renderArticleHtml } from "@/lib/editor/render";
@@ -83,6 +85,7 @@ export async function saveCategory(input: CategoryInput): Promise<Result> {
     db.delete(products).where(eq(products.categorySlug, input.slug)),
     ...items.map((p, i) => db.insert(products).values({ categorySlug: input.slug, ...p, sortOrder: i })),
   ]);
+  updateTag(CACHE_TAGS.categories);
   return { ok: true };
 }
 
@@ -109,6 +112,7 @@ export async function createCategory(slugInput: string, nameInput: string): Prom
     updatedAt: now,
   });
   await releasePath(db, `/products/${slug}`);
+  updateTag(CACHE_TAGS.categories);
   return { ok: true, slug };
 }
 
@@ -118,6 +122,8 @@ export async function deleteCategory(slug: string): Promise<Result> {
   // 產品與常見產品會跟著刪除（外鍵 ON DELETE CASCADE）
   await db.delete(productCategories).where(eq(productCategories.slug, slug));
   await addRedirect(db, `/products/${slug}`, "/products");
+  updateTag(CACHE_TAGS.categories);
+  updateTag(CACHE_TAGS.showcase);
   return { ok: true };
 }
 
@@ -128,6 +134,7 @@ export async function reorderCategories(slugs: string[]): Promise<Result> {
     db.update(productCategories).set({ sortOrder: i }).where(eq(productCategories.slug, slug)),
   );
   if (first) await db.batch([first, ...rest]);
+  updateTag(CACHE_TAGS.categories);
   return { ok: true };
 }
 
@@ -141,5 +148,6 @@ export async function saveShowcase(items: ShowcaseInput[]): Promise<Result> {
     .map((s) => ({ name: t(s.name, 60), image: s.image ?? "", categorySlug: s.categorySlug }))
     .filter((s) => s.name && s.image && cats.has(s.categorySlug));
   await db.batch([db.delete(showcaseItems), ...clean.map((s, i) => db.insert(showcaseItems).values({ ...s, sortOrder: i }))]);
+  updateTag(CACHE_TAGS.showcase);
   return { ok: true };
 }

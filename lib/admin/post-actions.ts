@@ -1,7 +1,9 @@
 "use server";
 
+import { updateTag } from "next/cache";
 import { and, eq, ne } from "drizzle-orm";
 import { requireAdmin } from "@/lib/auth/session";
+import { CACHE_TAGS } from "@/lib/cache-tags";
 import { getDb } from "@/lib/db/client";
 import { posts } from "@/lib/db/schema";
 import { ContentError, renderArticleHtml } from "@/lib/editor/render";
@@ -85,6 +87,7 @@ export async function savePost(input: PostInput): Promise<SaveResult> {
       .returning({ id: posts.id })
       .get();
     await releasePath(db, `/info/${slug}`);
+    updateTag(CACHE_TAGS.posts);
     return { ok: true, id: row.id, slug, savedAt: now.toISOString() };
   }
 
@@ -96,6 +99,7 @@ export async function savePost(input: PostInput): Promise<SaveResult> {
     if (old.status === "published") await addRedirect(db, `/info/${old.slug}`, `/info/${slug}`);
     else await releasePath(db, `/info/${slug}`);
   }
+  updateTag(CACHE_TAGS.posts);
   return { ok: true, id: input.id, slug, savedAt: now.toISOString() };
 }
 
@@ -107,5 +111,6 @@ export async function deletePost(id: number): Promise<{ ok: boolean; error?: str
   await db.delete(posts).where(eq(posts.id, id));
   // 已發布的文章刪掉後，舊網址轉到文章列表，不讓訪客和搜尋引擎看到 404
   if (post.status === "published") await addRedirect(db, `/info/${post.slug}`, "/info");
+  updateTag(CACHE_TAGS.posts);
   return { ok: true };
 }

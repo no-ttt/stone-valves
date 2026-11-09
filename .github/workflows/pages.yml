@@ -40,6 +40,7 @@ jobs:
       - name: 建本機資料庫並寫入種子資料
         run: |
           npm run db:migrate:local
+          npm run db:tagcache:local
           npm run db:seed:build
           npm run db:seed:local
 

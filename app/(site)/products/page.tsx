@@ -1,12 +1,10 @@
-/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ContactBand } from "@/components/ContactBand";
 import { Hero } from "@/components/Hero";
 import { ArrowUpRight } from "@/components/icons";
 import { Lines } from "@/components/Text";
-import { CategoryTile } from "@/components/Tiles";
+import { CategoryTile, ProductTile } from "@/components/Tiles";
 import { getCategories, getContent, getShowcase } from "@/lib/data";
 import { imageUrl } from "@/lib/images";
 import { companyInfo } from "@/lib/site";
@@ -65,14 +63,7 @@ export default async function ProductsPage() {
           </div>
           <div className="grid c4">
             {showcase.map((item) => (
-              <Link key={item.id} className="tile" href={`/products/${item.categorySlug}`}>
-                <div className="thumb fit">
-                  <img src={imageUrl(item.image)} alt={item.name} loading="lazy" />
-                </div>
-                <div className="meta">
-                  <h3>{item.name}</h3>
-                </div>
-              </Link>
+              <ProductTile key={item.id} image={item.image} alt={item.name} name={item.name} href={`/products/${item.categorySlug}`} />
             ))}
           </div>
         </section>

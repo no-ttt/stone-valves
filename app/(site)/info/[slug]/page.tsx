@@ -63,22 +63,38 @@ export default async function PostPage({ params }: Props) {
         </div>
         {/* 內文由後台編輯器產生，存檔時已經過濾（見 lib/sanitize.ts） */}
         <div className="article-body" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+        {/* 上一篇＝較舊的文章（左），下一篇＝較新的文章（右） */}
         <nav className="article-nav" aria-label="其他文章">
-          {newer && (
-            <Link href={`/info/${newer.slug}`}>
-              <small>← 較新的文章</small>
-              {newer.title}
-            </Link>
-          )}
-          <Link href="/info">
-            <small>返回</small>所有文章
-          </Link>
-          {older && (
-            <Link className="next" href={`/info/${older.slug}`}>
-              <small>較舊的文章 →</small>
-              {older.title}
-            </Link>
-          )}
+          <div className="an-side">
+            {older && (
+              <Link className="an-link" href={`/info/${older.slug}`}>
+                <span className="an-circle" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 16 16">
+                    <path d="M13 8H3M7 4 3 8l4 4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                <span className="an-text">
+                  <span className="an-label">上一篇</span>
+                  <span className="an-title">{older.title}</span>
+                </span>
+              </Link>
+            )}
+          </div>
+          <div className="an-side next">
+            {newer && (
+              <Link className="an-link" href={`/info/${newer.slug}`}>
+                <span className="an-text">
+                  <span className="an-label">下一篇</span>
+                  <span className="an-title">{newer.title}</span>
+                </span>
+                <span className="an-circle" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 16 16">
+                    <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </Link>
+            )}
+          </div>
         </nav>
       </article>
 

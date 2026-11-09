@@ -158,9 +158,25 @@ Cloudflare Workers 會在全球的節點自動擴展，不像傳統主機有固�
 
 | 優化 | 效果 | 什麼時候做 |
 |---|---|---|
-| OpenNext 的 R2 incremental cache | 頁面產生一次後快取起來，減少 D1 讀取和 CPU 用量 | 每天瀏覽量達到數萬次 |
+| ~~OpenNext 的 R2 incremental cache~~ | 已啟用，見 5.1 | — |
 | Cloudflare WAF、Bot 防護規則 | 擋掉惡意爬蟲，避免浪費請求額度 | 在 Metrics 看到異常流量時 |
 | D1 讀取副本（Read Replication） | 讓海外訪客讀資料更快 | 海外流量占比很高時 |
+
+### 5.1 前台資料快取（已啟用）
+
+- **存什麼**：前台讀的文字、產品分類、常見產品、文章（`lib/data.ts`）。第一個訪客查一次資料庫，結果存進快取，之後的訪客直接讀快取。
+- **放在哪**：內容放 R2 bucket `stone-valves-cache`（外面再包一層 Cloudflare 各機房的區域快取）；「哪個標籤什麼時候被清掉」記在 D1 的 `revalidations` 資料表（跟網站同一個資料庫）。設定在 `open-next.config.ts`。
+- **什麼時候更新**：沒有時間到期。後台按存檔時，對應的標籤會被清掉（`lib/cache-tags.ts`），下一個打開網站的人就會看到新內容：
+
+  | 後台動作 | 清掉的標籤 |
+  |---|---|
+  | 頁面文字存檔 | `content` |
+  | 分類新增／存檔／刪除／排序 | `categories`（刪除時也清 `showcase`） |
+  | 常見產品存檔 | `showcase` |
+  | 文章存檔／刪除 | `posts` |
+
+- **注意**：直接用 `wrangler d1 execute` 改資料庫不會清快取，改完要重新部署，或到後台對應的地方按一次存檔。
+- **第一次部署前**：建立 bucket `npx wrangler r2 bucket create stone-valves-cache`（staging 是 `stone-valves-cache-staging`），並把 `wrangler.jsonc` 裡 `NEXT_TAG_CACHE_D1` 的 `database_id` 填成跟 `DB` 一樣。`revalidations` 資料表由 `npm run cf:deploy:*`（`opennextjs-cloudflare deploy`）自動建立。
 
 ---
 
@@ -199,6 +215,7 @@ Cloudflare Workers 會在全球的節點自動擴展，不像傳統主機有固�
 - [ ] staging 環境回傳 `X-Robots-Tag: noindex`
 - [ ] 確認 D1 Time Travel 可以使用，並做一次手動匯出備份
 - [ ] Billing 設定用量通知
+- [ ] 建立快取用的 R2 bucket（見 5.1），後台改一段文字後前台有立即更新
 
 ---
 

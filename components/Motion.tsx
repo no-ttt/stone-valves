@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 // 換頁（client-side navigation）後會重新套用到新頁面的元素。
 
 const REVEAL_SELECTOR = [
-  ".section-head", ".grid > .tile", ".values > .value", ".stats > .stat", ".intro-copy", ".intro-media > .panel",
+  ".section-head", ".grid > .tile", ".grid > .pcard", ".values > .value", ".stats > .stat", ".intro-copy", ".intro-media > .panel",
   ".about-img", ".contact-list > li", ".quality > div", ".why > *", ".motto-inner > *", ".mat-grid > .mat",
   ".ind-list > li", ".mat-ind .h2", ".en-panel", ".article-body > *", ".article-nav > a", ".contact-copy", ".contact .actions",
   ".cat-nav", ".toolbar", ".kw",
@@ -15,6 +15,22 @@ const REVEAL_SELECTOR = [
 
 export function Motion() {
   const pathname = usePathname();
+
+  // 手機版產品分類是單行橫向捲動，把目前的分類捲到中間，避免被藏在右邊看不到
+  useEffect(() => {
+    const nav = document.querySelector<HTMLElement>(".cat-nav");
+    const active = nav?.querySelector<HTMLElement>('[aria-current="page"]');
+    if (!nav || !active || nav.scrollWidth <= nav.clientWidth) return;
+    const a = active.getBoundingClientRect();
+    const n = nav.getBoundingClientRect();
+    nav.scrollLeft += a.left - n.left - (n.width - a.width) / 2;
+  }, [pathname]);
+
+  // header 的進場動畫只在第一次開網頁時播；播完加上 settled，之後換頁 header 就不再重播、不會閃
+  useEffect(() => {
+    const t = window.setTimeout(() => document.documentElement.classList.add("settled"), 1000);
+    return () => window.clearTimeout(t);
+  }, []);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;

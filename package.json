@@ -10,8 +10,8 @@
     "typecheck": "tsc --noEmit",
     "cf:build": "opennextjs-cloudflare build",
     "cf:preview": "opennextjs-cloudflare build && wrangler dev",
-    "cf:deploy:staging": "SITE_ENV=staging opennextjs-cloudflare build && wrangler deploy --env staging",
-    "cf:deploy:production": "opennextjs-cloudflare build && wrangler deploy --env=\"\"",
+    "cf:deploy:staging": "SITE_ENV=staging opennextjs-cloudflare build && opennextjs-cloudflare deploy --env staging",
+    "cf:deploy:production": "opennextjs-cloudflare build && opennextjs-cloudflare deploy --env=\"\"",
     "cf:typegen": "wrangler types --env-interface Env",
     "db:generate": "drizzle-kit generate",
     "db:migrate:local": "wrangler d1 migrations apply DB --local",
@@ -19,7 +19,8 @@
     "db:migrate:production": "wrangler d1 migrations apply DB --remote --env=\"\"",
     "db:seed:build": "tsx scripts/build-seed.ts",
     "db:seed:local": "wrangler d1 execute DB --local --file=drizzle/seed.sql",
-    "db:reset:local": "rm -rf .wrangler/state/v3/d1 && npm run db:migrate:local && npm run db:seed:build && npm run db:seed:local",
+    "db:tagcache:local": "wrangler d1 execute NEXT_TAG_CACHE_D1 --local --command \"CREATE TABLE IF NOT EXISTS revalidations (tag TEXT NOT NULL, revalidatedAt INTEGER NOT NULL, stale INTEGER, expire INTEGER default NULL, UNIQUE(tag) ON CONFLICT REPLACE);\"",
+    "db:reset:local": "rm -rf .wrangler/state/v3/d1 && npm run db:migrate:local && npm run db:tagcache:local && npm run db:seed:build && npm run db:seed:local",
     "admin:create": "tsx scripts/create-admin.ts"
   },
   "dependencies": {

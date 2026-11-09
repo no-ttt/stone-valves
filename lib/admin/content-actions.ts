@@ -1,7 +1,9 @@
 "use server";
 
+import { updateTag } from "next/cache";
 import { inArray } from "drizzle-orm";
 import { requireAdmin } from "@/lib/auth/session";
+import { CACHE_TAGS } from "@/lib/cache-tags";
 import { getDb } from "@/lib/db/client";
 import { pageContent } from "@/lib/db/schema";
 import { CONTENT_GROUPS, type ContentGroupId, type ContentField } from "@/lib/content-fields";
@@ -43,5 +45,6 @@ export async function saveContentGroup(group: ContentGroupId, values: Record<str
         .onConflictDoUpdate({ target: pageContent.key, set: { value, updatedAt: now } });
     }),
   ]);
+  updateTag(CACHE_TAGS.content);
   return { ok: true };
 }

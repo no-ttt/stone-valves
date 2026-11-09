@@ -18,7 +18,7 @@ export async function ContactBand({ eyebrow, heading }: Props) {
     <section
       className="contact"
       style={{
-        backgroundImage: `linear-gradient(90deg,rgba(18,46,38,.95) 0%,rgba(18,46,38,.82) 50%,rgba(18,46,38,.45) 100%),url('${imageUrl(content["contact.image"])}')`,
+        backgroundImage: `linear-gradient(90deg,rgba(22,42,36,.95) 0%,rgba(22,42,36,.82) 50%,rgba(22,42,36,.45) 100%),url('${imageUrl(content["contact.image"])}')`,
       }}
     >
       <div className="contact-inner">

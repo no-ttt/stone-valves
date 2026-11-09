@@ -13,7 +13,9 @@ type Props = {
 /** 每頁頂部的大圖區塊，包含 logo、主選單與頁面標題 */
 export function Hero({ size, image, current, children }: Props) {
   return (
-    <section className={`hero ${size}`} style={{ backgroundImage: `var(--shade),url('${image}')` }}>
+    <section className={`hero ${size}`}>
+      {/* 背景圖獨立一層：換頁時背景直接淡換成下一頁的圖，header 才不會因為底色消失而看不見 */}
+      <div className="hero-bg" aria-hidden="true" style={{ backgroundImage: `var(--shade),url('${image}')` }} />
       <HeroLines />
       <header className="topbar">
         <Link className="brand" href="/">

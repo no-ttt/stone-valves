@@ -1,10 +1,10 @@
-/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ContactBand } from "@/components/ContactBand";
 import { Hero } from "@/components/Hero";
+import { ProductTile } from "@/components/Tiles";
 import { findRedirect, getCategories, getCategory, getContent } from "@/lib/data";
 import { imageUrl } from "@/lib/images";
 
@@ -67,17 +67,20 @@ export default async function CategoryPage({ params }: Props) {
         )}
         <div className="grid">
           {c.products.map((p) => (
-            <div key={p.id} className="tile">
-              <div className="thumb fit">
-                <img src={imageUrl(p.image)} alt={p.imageAlt || p.name} loading="lazy" />
-              </div>
-              <div className="meta">
-                <h3>{p.name}</h3>
-              </div>
-            </div>
+            <ProductTile key={p.id} image={p.image} alt={p.imageAlt || p.name} name={p.name} />
           ))}
         </div>
-        {c.keywords && <p className="kw">{c.keywords.split(",").filter(Boolean).join("・")}</p>}
+        {c.keywords && (
+          <ul className="kw">
+            {c.keywords
+              .split(",")
+              .map((k) => k.trim())
+              .filter(Boolean)
+              .map((k) => (
+                <li key={k}>{k}</li>
+              ))}
+          </ul>
+        )}
       </section>
 
       <ContactBand eyebrow={c.contactEyebrow} heading={c.contactHeading} />

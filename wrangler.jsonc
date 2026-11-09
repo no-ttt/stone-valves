@@ -17,6 +17,13 @@
       "database_name": "stone-valves-db",
       "database_id": "00000000-0000-0000-0000-000000000000",
       "migrations_dir": "drizzle/migrations"
+    },
+    // 前台資料快取的「標籤清除紀錄」，跟上面是同一個資料庫（database_id 要填一樣的），
+    // 見 open-next.config.ts。
+    {
+      "binding": "NEXT_TAG_CACHE_D1",
+      "database_name": "stone-valves-db",
+      "database_id": "00000000-0000-0000-0000-000000000000"
     }
   ],
   // 後台上傳的圖片。正式環境要在 R2 設定公開的自訂網域（例如 img.你的網域），
@@ -26,6 +33,12 @@
     {
       "binding": "UPLOADS",
       "bucket_name": "stone-valves-images"
+    },
+    // 前台資料快取的內容（不公開，跟圖片分開放）。第一次部署前執行
+    // `npx wrangler r2 bucket create stone-valves-cache`
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "stone-valves-cache"
     }
   ],
   "vars": {
@@ -48,12 +61,21 @@
           "database_name": "stone-valves-db-staging",
           "database_id": "00000000-0000-0000-0000-000000000001",
           "migrations_dir": "drizzle/migrations"
+        },
+        {
+          "binding": "NEXT_TAG_CACHE_D1",
+          "database_name": "stone-valves-db-staging",
+          "database_id": "00000000-0000-0000-0000-000000000001"
         }
       ],
       "r2_buckets": [
         {
           "binding": "UPLOADS",
           "bucket_name": "stone-valves-images-staging"
+        },
+        {
+          "binding": "NEXT_INC_CACHE_R2_BUCKET",
+          "bucket_name": "stone-valves-cache-staging"
         }
       ],
       "vars": {
