@@ -8,8 +8,31 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
-  // D1（文章、產品、前台文字）與 R2（圖片）在下一階段接上後台時再加入。
-  // 目前內容放在 content/ 的資料檔，圖片放在 public/images/。
+  // 文章、產品、前台文字、後台帳號。
+  // database_id 是佔位值：本地開發（--local）用不到；第一次部署前執行
+  // `npx wrangler d1 create stone-valves-db`，把拿到的 id 填進來。
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "stone-valves-db",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "drizzle/migrations"
+    }
+  ],
+  // 後台上傳的圖片。正式環境要在 R2 設定公開的自訂網域（例如 img.你的網域），
+  // 並把網址填進 vars 的 IMG_BASE，前台的圖片就會直接由 CDN 提供、不經過 Worker。
+  // 見 docs/Cloudflare-Infra.md 第 4 節。
+  "r2_buckets": [
+    {
+      "binding": "UPLOADS",
+      "bucket_name": "stone-valves-images"
+    }
+  ],
+  "vars": {
+    // 正式網域，canonical、sitemap、結構化資料會用到，例如 https://www.stonevalves.com.tw
+    "SITE_URL": "",
+    "IMG_BASE": ""
+  },
 
   // 上面的設定就是正式環境（production）；不加 --env 的 wrangler 指令一律作用在正式環境。
   // staging 是另一個獨立的 Worker，用 `npm run cf:deploy:staging` 部署，
@@ -17,7 +40,27 @@
   "env": {
     "staging": {
       "name": "stone-valves-web-staging",
-      "preview_urls": false
+      "preview_urls": false,
+      // binding 不會從上層繼承，env 區塊裡要完整重寫
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "stone-valves-db-staging",
+          "database_id": "00000000-0000-0000-0000-000000000001",
+          "migrations_dir": "drizzle/migrations"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "UPLOADS",
+          "bucket_name": "stone-valves-images-staging"
+        }
+      ],
+      "vars": {
+        "SITE_URL": "",
+        "IMG_BASE": "",
+        "SITE_ENV": "staging"
+      }
     }
   }
 }

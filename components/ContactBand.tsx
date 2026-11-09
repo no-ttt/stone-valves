@@ -1,36 +1,39 @@
-import { COMPANY } from "@/lib/site";
+import { Lines } from "@/components/Text";
+import { getContent } from "@/lib/data";
+import { imageUrl } from "@/lib/images";
+import { companyInfo } from "@/lib/site";
 
 type Props = {
+  /** 沒給就用後台「聯絡區塊」的設定 */
   eyebrow?: string;
-  /** 可含 <br>，來自內容資料檔 */
-  headingHtml?: string;
-  image?: string;
+  /** 多行文字，換行會保留 */
+  heading?: string;
 };
 
 /** 頁面底部的聯絡區塊 */
-export function ContactBand({
-  eyebrow = "寔黈在氣動閥業立足三十餘年",
-  headingHtml = "選型、維修、報價，<br>直接問我們的技術人員。",
-  image = "/images/281183300.jpg",
-}: Props) {
+export async function ContactBand({ eyebrow, heading }: Props) {
+  const content = await getContent();
+  const company = companyInfo(content);
   return (
     <section
       className="contact"
       style={{
-        backgroundImage: `linear-gradient(90deg,rgba(18,46,38,.95) 0%,rgba(18,46,38,.82) 50%,rgba(18,46,38,.45) 100%),url('${image}')`,
+        backgroundImage: `linear-gradient(90deg,rgba(18,46,38,.95) 0%,rgba(18,46,38,.82) 50%,rgba(18,46,38,.45) 100%),url('${imageUrl(content["contact.image"])}')`,
       }}
     >
       <div className="contact-inner">
         <div className="contact-copy">
-          <div className="eyebrow">{eyebrow}</div>
-          <h2 dangerouslySetInnerHTML={{ __html: headingHtml }} />
+          <div className="eyebrow">{eyebrow || content["contact.eyebrow"]}</div>
+          <h2>
+            <Lines text={heading || content["contact.heading"]} />
+          </h2>
         </div>
         <div className="actions">
-          <a className="btn btn-light" href={COMPANY.phoneHref}>
-            來電 {COMPANY.phone}
+          <a className="btn btn-light" href={company.phoneHref}>
+            來電 {company.phone}
           </a>
-          <a className="btn btn-glass glass" href={`mailto:${COMPANY.email}`}>
-            {COMPANY.email}
+          <a className="btn btn-glass glass" href={`mailto:${company.email}`}>
+            {company.email}
           </a>
         </div>
       </div>

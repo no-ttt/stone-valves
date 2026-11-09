@@ -1,4 +1,5 @@
-// 產品分類。下一階段接上後台後改從 D1 的 product_categories / products 讀取。
+// 從舊站搬過來的產品分類初始資料。前台已改從 D1 讀取，這個檔案只給
+// scripts/build-seed.ts（產生初始資料）和 next.config.ts（舊網址轉址）使用。
 export type Product = { name: string; image: string };
 
 export type Category = {

@@ -1,4 +1,5 @@
-// 資訊討論文章。下一階段接上後台後改從 D1 的 posts 資料表讀取。
+// 從舊站搬過來的文章初始資料。前台已改從 D1 讀取，這個檔案只給
+// scripts/build-seed.ts（產生初始資料）和 next.config.ts（舊網址轉址）使用。
 export type PostTag = "資訊" | "討論";
 
 export type Post = {

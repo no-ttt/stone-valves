@@ -2,21 +2,22 @@
 
 import { useState } from "react";
 import { PostTile } from "@/components/Tiles";
-import type { Post, PostTag } from "@/content/posts";
+import type { PostSummary } from "@/lib/data";
+import { isoDate } from "@/lib/site";
 
-type Cat = "all" | PostTag;
+type Cat = "all" | PostSummary["tag"];
 
 /**
  * 文章列表的分類與月份篩選。
  * 所有文章都會輸出在 HTML 裡（篩選只是隱藏），搜尋引擎看得到完整列表。
  */
-export function PostFilter({ posts }: { posts: Post[] }) {
+export function PostFilter({ posts }: { posts: PostSummary[] }) {
   const [cat, setCat] = useState<Cat>("all");
   const [month, setMonth] = useState("");
 
-  const monthOf = (p: Post) => p.date.slice(0, 7);
-  const months = [...new Set(posts.map(monthOf))];
-  const matches = (p: Post) => (cat === "all" || p.tag === cat) && (!month || monthOf(p) === month);
+  const monthOf = (p: PostSummary) => (p.publishedAt ? isoDate(p.publishedAt).slice(0, 7) : "");
+  const months = [...new Set(posts.map(monthOf).filter(Boolean))];
+  const matches = (p: PostSummary) => (cat === "all" || p.tag === cat) && (!month || monthOf(p) === month);
   const shown = posts.filter(matches).length;
 
   const tabs: { cat: Cat; label: string; count: number }[] = [

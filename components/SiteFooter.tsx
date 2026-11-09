@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { categories } from "@/content/categories";
-import { ADDRESS_TEXT, COMPANY, NAV } from "@/lib/site";
+import { getCategories, getContent } from "@/lib/data";
+import { NAV, companyInfo } from "@/lib/site";
 
-export function SiteFooter() {
+export async function SiteFooter() {
+  const [content, categories] = await Promise.all([getContent(), getCategories()]);
+  const company = companyInfo(content);
   return (
     <footer className="site-foot">
       <div className="foot-inner">
@@ -15,7 +17,7 @@ export function SiteFooter() {
               <small>STONE VALVES</small>
             </span>
           </Link>
-          <p>專業氣動執行器與閥門製造，{COMPANY.certification}。</p>
+          <p>專業氣動執行器與閥門製造，{company.certification}。</p>
         </div>
         <div className="foot-col">
           <b>網站</b>
@@ -37,17 +39,17 @@ export function SiteFooter() {
         </div>
         <div className="foot-col">
           <b>聯絡資訊</b>
-          <span>{ADDRESS_TEXT}</span>
-          <a href={COMPANY.phoneHref}>電話 {COMPANY.phone}</a>
-          <span>傳真 {COMPANY.fax}</span>
-          <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+          <span>{company.address}</span>
+          <a href={company.phoneHref}>電話 {company.phone}</a>
+          <span>傳真 {company.fax}</span>
+          <a href={`mailto:${company.email}`}>{company.email}</a>
         </div>
       </div>
       <div className="foot-bottom">
         <span>
-          © {new Date().getFullYear()} {COMPANY.name} {COMPANY.englishName}
+          © {new Date().getFullYear()} {company.name} {company.englishName}
         </span>
-        <a href={COMPANY.facebook} rel="noopener">
+        <a href={company.facebook} rel="noopener">
           Facebook
         </a>
       </div>

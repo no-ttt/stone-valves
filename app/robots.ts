@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
   // staging 整站不讓搜尋引擎爬
   if (IS_STAGING) return { rules: { userAgent: "*", disallow: "/" } };
   return {
-    rules: { userAgent: "*", allow: "/", disallow: ["/admin", "/api"] },
+    rules: { userAgent: "*", allow: "/", disallow: ["/admin", "/api", "/preview"] },
     sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

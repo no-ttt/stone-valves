@@ -1,0 +1,64 @@
+# 前台靜態預覽：推到 main 就重新輸出前台並發布到 GitHub Pages
+# https://no-ttt.github.io/stone-valves/
+#
+# 內容來自種子資料（content/*.ts → drizzle/seed.sql），沒有後台。
+# 正式站之後會改部署到 Cloudflare Workers（見 docs/Cloudflare-Infra.md）。
+name: GitHub Pages 預覽
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+env:
+  PAGES_BASE_PATH: /stone-valves
+  SITE_URL: https://no-ttt.github.io/stone-valves
+  SITE_ENV: staging
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: 建本機資料庫並寫入種子資料
+        run: |
+          npm run db:migrate:local
+          npm run db:seed:build
+          npm run db:seed:local
+
+      - name: 打包
+        run: npx opennextjs-cloudflare build
+
+      - name: 輸出靜態頁面
+        run: node scripts/export-pages.mjs
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out-pages
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
