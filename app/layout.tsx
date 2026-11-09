@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Noto_Sans_TC, Poppins } from "next/font/google";
 import { getContent } from "@/lib/data";
-import { imageUrl } from "@/lib/images";
+import { absoluteImageUrl } from "@/lib/images";
 import { IS_STAGING, SITE_URL } from "@/lib/site";
 
 // 內容來自 D1，每次請求時產生頁面（後台存檔後前台立即更新）
@@ -21,9 +21,11 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       locale: "zh_TW",
       siteName: "寔黈企業 STONE VALVES",
-      images: [imageUrl(c["seo.defaultImage"])],
+      images: [absoluteImageUrl(c["seo.defaultImage"], SITE_URL)],
     },
     robots: IS_STAGING ? { index: false, follow: false } : undefined,
+    // iPhone Safari 會自動把電話號碼包成連結，改到頁面讓 React 判定不一致而整頁重畫；關掉自動偵測
+    formatDetection: { telephone: false, email: false, address: false },
   };
 }
 

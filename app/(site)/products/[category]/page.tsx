@@ -6,7 +6,8 @@ import { ContactBand } from "@/components/ContactBand";
 import { Hero } from "@/components/Hero";
 import { ProductTile } from "@/components/Tiles";
 import { findRedirect, getCategories, getCategory, getContent } from "@/lib/data";
-import { imageUrl } from "@/lib/images";
+import { absoluteImageUrl, imageUrl, withBasePath } from "@/lib/images";
+import { SITE_URL } from "@/lib/site";
 
 type Props = { params: Promise<{ category: string }> };
 
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: c.seoDescription || undefined,
     alternates: { canonical: url },
     robots: c.noindex ? { index: false, follow: true } : undefined,
-    openGraph: { url, title, images: [imageUrl(c.ogImage || c.cardImage)] },
+    openGraph: { url, title, images: [absoluteImageUrl(c.ogImage || c.cardImage, SITE_URL)] },
   };
 }
 
@@ -63,7 +64,7 @@ export default async function CategoryPage({ params }: Props) {
         </div>
         {c.introHtml && (
           // 分類介紹由後台編輯
-          <div className="article-body category-intro" dangerouslySetInnerHTML={{ __html: c.introHtml }} />
+          <div className="article-body category-intro" dangerouslySetInnerHTML={{ __html: withBasePath(c.introHtml) }} />
         )}
         <div className="grid">
           {c.products.map((p) => (

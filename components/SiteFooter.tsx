@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getCategories, getContent } from "@/lib/data";
+import { imageUrl } from "@/lib/images";
 import { NAV, companyInfo } from "@/lib/site";
 
 export async function SiteFooter() {
@@ -11,7 +12,7 @@ export async function SiteFooter() {
         <div className="foot-brand">
           <Link className="brand" href="/">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/st-png_3.png" alt="寔黈企業標誌" />
+            <img src={imageUrl("/images/st-png_3.png")} alt="寔黈企業標誌" />
             <span className="brand-name">
               <b>寔黈企業</b>
               <small>STONE VALVES</small>

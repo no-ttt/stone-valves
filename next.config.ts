@@ -4,6 +4,9 @@ import { categories } from "./content/categories";
 const nextConfig: NextConfig = {
   // 只有輸出 GitHub Pages 靜態預覽時才設定（網站在 /stone-valves 底下），見 scripts/export-pages.mjs
   basePath: process.env.PAGES_BASE_PATH || undefined,
+  // 同一個值也給程式用（伺服器和瀏覽器都看得到）：lib/images.ts 要幫 /images/... 補上前綴，
+  // 不然 iPhone 等情況下頁面在瀏覽器重新繪製時，圖片網址會少了 /stone-valves 而變成破圖
+  env: { BASE_PATH: process.env.PAGES_BASE_PATH || "" },
 
   // Workers 上沒有 next/image 的伺服器端最佳化；圖片改在上傳時就壓縮好
   images: { unoptimized: true },

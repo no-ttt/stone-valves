@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, HeroLines } from "@/components/icons";
+import { imageUrl } from "@/lib/images";
 import { NAV, type NavHref } from "@/lib/site";
 
 type Props = {
@@ -20,7 +21,7 @@ export function Hero({ size, image, current, children }: Props) {
       <header className="topbar">
         <Link className="brand" href="/">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/st-png_3.png" alt="寔黈企業標誌" />
+          <img src={imageUrl("/images/st-png_3.png")} alt="寔黈企業標誌" />
           <span className="brand-name">
             <b>寔黈企業</b>
             <small>STONE VALVES</small>

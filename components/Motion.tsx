@@ -7,9 +7,9 @@ import { usePathname } from "next/navigation";
 // 換頁（client-side navigation）後會重新套用到新頁面的元素。
 
 const REVEAL_SELECTOR = [
-  ".section-head", ".grid > .tile", ".grid > .pcard", ".values > .value", ".stats > .stat", ".intro-copy", ".intro-media > .panel",
+  ".section-head", ".grid > .pcard", ".values > .value", ".stats > .stat", ".intro-copy", ".intro-media > .panel",
   ".about-img", ".contact-list > li", ".quality > div", ".why > *", ".motto-inner > *", ".mat-grid > .mat",
-  ".ind-list > li", ".mat-ind .h2", ".en-panel", ".article-body > *", ".article-nav > a", ".contact-copy", ".contact .actions",
+  ".ind-list > li", ".mat-ind .h2", ".en-panel", ".article-body > *", ".contact-copy", ".contact .actions",
   ".cat-nav", ".toolbar", ".kw",
 ].join(",");
 

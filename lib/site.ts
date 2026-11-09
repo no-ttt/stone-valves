@@ -10,8 +10,6 @@ export const SITE_URL = (process.env.SITE_URL || "https://www.example.com.tw").r
 /** staging 建置時帶 SITE_ENV=staging：所有頁面 noindex，robots.txt 全擋 */
 export const IS_STAGING = process.env.SITE_ENV === "staging";
 
-export const BRAND = { shortName: "寔黈企業", brand: "STONE VALVES" };
-
 export const NAV = [
   { href: "/", label: "寔黈首頁" },
   { href: "/products", label: "產品資訊" },
