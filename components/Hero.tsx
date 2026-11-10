@@ -1,9 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, HeroLines } from "@/components/icons";
-import { MobileMenu } from "@/components/MobileMenu";
-import { getContent } from "@/lib/data";
 import { imageUrl } from "@/lib/images";
-import { NAV, companyInfo, type NavHref } from "@/lib/site";
+import { NAV, type NavHref } from "@/lib/site";
 
 type Props = {
   size: "tall" | "mid" | "short";
@@ -13,9 +11,8 @@ type Props = {
   children: React.ReactNode;
 };
 
-/** 每頁頂部的大圖區塊，包含 logo、主選單與頁面標題。手機版選單改成漢堡按鈕（MobileMenu） */
-export async function Hero({ size, image, current, children }: Props) {
-  const company = companyInfo(await getContent());
+/** 每頁頂部的大圖區塊，包含 logo、主選單與頁面標題。手機版的選單按鈕在版面最外層（SiteMenu） */
+export function Hero({ size, image, current, children }: Props) {
   const logo = imageUrl("/images/st-png_3.png");
   return (
     <section className={`hero ${size}`}>
@@ -42,7 +39,6 @@ export async function Hero({ size, image, current, children }: Props) {
           聯繫我們
           <ArrowUpRight />
         </Link>
-        <MobileMenu nav={NAV} current={current} logo={logo} phone={company.phone} phoneHref={company.phoneHref} email={company.email} />
       </header>
       <div className="hero-copy">{children}</div>
     </section>

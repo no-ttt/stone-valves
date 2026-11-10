@@ -8,7 +8,6 @@ import { usePathname } from "next/navigation";
 
 type Props = {
   nav: readonly { href: string; label: string }[];
-  current: string;
   logo: string;
   phone: string;
   phoneHref: string;
@@ -17,14 +16,18 @@ type Props = {
 
 /**
  * 手機版選單（760px 以下才顯示，見 site.css「手機版選單」）。
- * 按鈕放在 header 裡；展開的全螢幕墨綠選單用 portal 放到 <body>，不受頁首的 overflow 影響。
+ * 放在版面最外層（components/SiteMenu.tsx），不放在 header 裡：
+ * iPhone Safari 上 position:fixed 的按鈕若在 header 裡，捲動時會跟著跑；放外層才會固定在右上角，換頁時也不會重建。
+ * 展開的全螢幕墨綠選單用 portal 放到 <body>。
  */
-export function MobileMenu({ nav, current, logo, phone, phoneHref, email }: Props) {
+export function MobileMenu({ nav, logo, phone, phoneHref, email }: Props) {
   // 記住「在哪一頁打開的」：換頁後路徑不同，選單就自動收起
   const pathname = usePathname();
   const [openedAt, setOpenedAt] = useState<string | null>(null);
   const open = openedAt === pathname;
   const setOpen = (v: boolean) => setOpenedAt(v ? pathname : null);
+  // 目前所在的主選單項目（首頁只比對 /，其他比對開頭，例如 /products/actuator 算產品資訊）
+  const current = nav.find((item) => (item.href === "/" ? pathname === "/" : pathname.startsWith(item.href)))?.href;
   // 伺服器端沒有 document，只在瀏覽器端用 portal 掛到 <body>
   const mounted = useSyncExternalStore(
     () => () => {},

@@ -26,6 +26,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+/**
+ * 關鍵字前面已經有一條細線（site.css .kw li::before），
+ * 拿掉後台輸入時自帶的「▎｜|」等直線，以及中文字之間多餘的空白（例如「閘 閥 ． 閘板閥」）
+ */
+function cleanKeyword(k: string) {
+  return k
+    .replace(/^[\s\u00a0▎▍▌▋▊▉│┃|｜]+/, "")
+    .replace(/[\s\u00a0]+/g, " ")
+    .replace(/(?<=[\u3000-\u9fff\uff00-\uffef])\s+(?=[\u3000-\u9fff\uff00-\uffef])/g, "")
+    .trim();
+}
+
 export default async function CategoryPage({ params }: Props) {
   const slug = (await params).category;
   const [c, categories, content] = await Promise.all([getCategory(slug), getCategories(), getContent()]);
@@ -76,7 +88,7 @@ export default async function CategoryPage({ params }: Props) {
           <ul className="kw">
             {c.keywords
               .split(",")
-              .map((k) => k.trim())
+              .map(cleanKeyword)
               .filter(Boolean)
               .map((k) => (
                 <li key={k}>{k}</li>

@@ -1,6 +1,7 @@
 import { JsonLd } from "@/components/JsonLd";
 import { Motion } from "@/components/Motion";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SiteMenu } from "@/components/SiteMenu";
 import { getContent } from "@/lib/data";
 import { SITE_URL, companyInfo } from "@/lib/site";
 import "./site.css";
@@ -34,6 +35,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         {children}
         <SiteFooter />
       </div>
+      <SiteMenu />
       <Motion />
       <JsonLd data={organization} />
     </>

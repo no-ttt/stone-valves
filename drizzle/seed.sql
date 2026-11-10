@@ -5,45 +5,45 @@ DELETE FROM products;
 DELETE FROM product_categories;
 DELETE FROM posts;
 INSERT INTO product_categories (slug, name, tile_name, nav_name, footer_name, intro_html, card_image, keywords, contact_eyebrow, contact_heading, show_on_home, sort_order, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('actuator', '氣缸．執行器', '氣缸 ｜ 執行器', '氣缸．執行器', '氣缸．執行器', '', '/images/1637105412_orig.jpg', '複動式鋁合金氣缸,單動式鋁合金氣缸,鑄鐵氣缸,白鐵氣缸,雙動式鋁合金氣缸,氣動執行器,氣動頭,氣動驅動器,旋轉氣缸,Pneumatic actuators,雙動式氣壓缸', '需要氣缸的規格或報價？', '告訴我們您的使用條件，
-我們幫您挑選合適的產品。', 1, 0, NULL, '寔黈企業氣缸．執行器產品：複動式鋁合金氣缸、單動式鋁合金氣缸、白鐵氣缸、鑄鐵氣缸。', NULL, 0, 1792586990, 1792586990);
+我們幫您挑選合適的產品。', 1, 0, NULL, '寔黈企業氣缸．執行器產品：複動式鋁合金氣缸、單動式鋁合金氣缸、白鐵氣缸、鑄鐵氣缸。', NULL, 0, 1794325064, 1794325064);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('actuator', '複動式鋁合金氣缸', '/images/1637105412_orig.jpg', '複動式鋁合金氣缸', 0);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('actuator', '單動式鋁合金氣缸', '/images/1813122282_orig.jpg', '單動式鋁合金氣缸', 1);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('actuator', '白鐵氣缸', '/images/1265937165_orig.jpg', '白鐵氣缸', 2);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('actuator', '鑄鐵氣缸', '/images/1047088091.jpg', '鑄鐵氣缸', 3);
 INSERT INTO product_categories (slug, name, tile_name, nav_name, footer_name, intro_html, card_image, keywords, contact_eyebrow, contact_heading, show_on_home, sort_order, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('ball-valve', '球閥．球塞閥', '球閥 ｜ 球塞閥', '球閥．球塞閥', '球閥．球塞閥', '', '/images/590589702_orig.jpg', '氣動球閥,氣動球塞閥,氣動法蘭口球塞閥,法蘭口球閥,球塞閥,球閥,氣動牙口球塞閥,氣動焊口球塞閥,氣動三片式球閥,氣動兩片式球閥,氣動三通球閥,牙口球閥,焊口球閥,平台球閥', '需要球閥的規格或報價？', '告訴我們您的使用條件，
-我們幫您挑選合適的產品。', 1, 1, NULL, '寔黈企業球閥．球塞閥產品：法蘭口球塞閥、三通球塞閥、三片式焊口閥/牙口閥、三片式牙口閥/焊口閥、兩片式焊口閥/牙口閥。', NULL, 0, 1792586990, 1792586990);
+我們幫您挑選合適的產品。', 1, 1, NULL, '寔黈企業球閥．球塞閥產品：法蘭口球塞閥、三通球塞閥、三片式焊口閥/牙口閥、三片式牙口閥/焊口閥、兩片式焊口閥/牙口閥。', NULL, 0, 1794325064, 1794325064);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('ball-valve', '法蘭口球塞閥', '/images/590589702_orig.jpg', '法蘭口球塞閥', 0);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('ball-valve', '三通球塞閥', '/images/1054832566_orig.jpg', '三通球塞閥', 1);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('ball-valve', '三片式焊口閥/牙口閥', '/images/1302536973_orig.jpg', '三片式焊口閥/牙口閥', 2);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('ball-valve', '三片式牙口閥/焊口閥', '/images/2018445947_orig.jpg', '三片式牙口閥/焊口閥', 3);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('ball-valve', '兩片式焊口閥/牙口閥', '/images/84498818_orig.jpg', '兩片式焊口閥/牙口閥', 4);
 INSERT INTO product_categories (slug, name, tile_name, nav_name, footer_name, intro_html, card_image, keywords, contact_eyebrow, contact_heading, show_on_home, sort_order, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('butterfly-valve', '蝶閥．蝶型閥', '蝶閥 ｜ 蝶型閥', '蝶閥．蝶型閥', '蝶閥．蝶型閥', '', '/images/2128037631_orig.jpg', '氣動蝶型閥,氣動蝶閥,蝶型閥,蝶閥,對夾式蝶閥,多耳式蝶閥,全金屬蝶閥,鑄鐵蝶閥,白鐵蝶閥,不鏽鋼蝶閥,FC蝶閥,sus蝶閥,蝶型閥組裝,Lug Type Butterfly Valve,Wafer Type,台灣蝶閥', '需要蝶閥的規格或報價？', '告訴我們您的使用條件，
-我們幫您挑選合適的產品。', 1, 2, NULL, '寔黈企業蝶閥．蝶型閥產品：對夾式蝶閥、多耳式蝶閥、全金屬蝶閥、鑄鐵．不鏽鋼。', NULL, 0, 1792586990, 1792586990);
+我們幫您挑選合適的產品。', 1, 2, NULL, '寔黈企業蝶閥．蝶型閥產品：對夾式蝶閥、多耳式蝶閥、全金屬蝶閥、鑄鐵．不鏽鋼。', NULL, 0, 1794325064, 1794325064);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('butterfly-valve', '對夾式蝶閥', '/images/2128037631_orig.jpg', '對夾式蝶閥', 0);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('butterfly-valve', '多耳式蝶閥', '/images/496878065_orig.jpg', '多耳式蝶閥', 1);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('butterfly-valve', '全金屬蝶閥', '/images/45347623.jpg', '全金屬蝶閥', 2);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('butterfly-valve', '鑄鐵．不鏽鋼', '/images/3_orig.jpg', '鑄鐵．不鏽鋼', 3);
-INSERT INTO product_categories (slug, name, tile_name, nav_name, footer_name, intro_html, card_image, keywords, contact_eyebrow, contact_heading, show_on_home, sort_order, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('gate-valve', '閘閥．閘板閥', '閘閥 ｜ 閘板閥', '閘閥．閘板閥', '閘閥．閘板閥', '', '/images/1002776453_orig.jpg', '▎閘 閥 ． 閘板閥', '需要閘閥的規格或報價？', '告訴我們您的使用條件，
-我們幫您挑選合適的產品。', 1, 3, NULL, '寔黈企業閘閥．閘板閥產品：閘閥。', NULL, 0, 1792586990, 1792586990);
+INSERT INTO product_categories (slug, name, tile_name, nav_name, footer_name, intro_html, card_image, keywords, contact_eyebrow, contact_heading, show_on_home, sort_order, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('gate-valve', '閘閥．閘板閥', '閘閥 ｜ 閘板閥', '閘閥．閘板閥', '閘閥．閘板閥', '', '/images/1002776453_orig.jpg', '閘閥．閘板閥', '需要閘閥的規格或報價？', '告訴我們您的使用條件，
+我們幫您挑選合適的產品。', 1, 3, NULL, '寔黈企業閘閥．閘板閥產品：閘閥。', NULL, 0, 1794325064, 1794325064);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('gate-valve', '閘閥', '/images/1002776453_orig.jpg', '閘閥', 0);
 INSERT INTO product_categories (slug, name, tile_name, nav_name, footer_name, intro_html, card_image, keywords, contact_eyebrow, contact_heading, show_on_home, sort_order, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('union-plastic-valve', '由令．塑膠閥', '由令 ｜ 塑膠閥', '由令．塑膠閥', '由令．塑膠閥', '', '/images/687549987_2.jpg', '氣動塑膠由令,由令組裝,汙水由令,染整由令,塑膠球閥,塑膠閥組裝,汙水用塑膠閥,氣動式塑膠閥,氣動式PVC閥,耐酸鹼塑膠閥,化學用塑膠閥,高溫用塑膠閥,耐酸鹼PVC閥,化學PVC閥,高溫用PVC閥', '需要由令的規格或報價？', '告訴我們您的使用條件，
-我們幫您挑選合適的產品。', 1, 4, NULL, '寔黈企業由令．塑膠閥產品：塑膠閥。', NULL, 0, 1792586990, 1792586990);
+我們幫您挑選合適的產品。', 1, 4, NULL, '寔黈企業由令．塑膠閥產品：塑膠閥。', NULL, 0, 1794325064, 1794325064);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('union-plastic-valve', '塑膠閥', '/images/687549987_2.jpg', '塑膠閥', 0);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('union-plastic-valve', '塑膠閥', '/images/1850995875_orig.png', '塑膠閥', 1);
-INSERT INTO product_categories (slug, name, tile_name, nav_name, footer_name, intro_html, card_image, keywords, contact_eyebrow, contact_heading, show_on_home, sort_order, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('relief-safety-valve', '減壓閥．安全閥', '減壓閥 ｜ 安全閥', '減壓閥．安全閥', '減壓閥．安全閥', '', '/images/1838516367_orig.jpg', '▎減 壓 閥 ． 安 全 閥', '需要減壓閥的規格或報價？', '告訴我們您的使用條件，
-我們幫您挑選合適的產品。', 1, 5, NULL, '寔黈企業減壓閥．安全閥產品：安全閥、減壓閥。', NULL, 0, 1792586990, 1792586990);
+INSERT INTO product_categories (slug, name, tile_name, nav_name, footer_name, intro_html, card_image, keywords, contact_eyebrow, contact_heading, show_on_home, sort_order, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('relief-safety-valve', '減壓閥．安全閥', '減壓閥 ｜ 安全閥', '減壓閥．安全閥', '減壓閥．安全閥', '', '/images/1838516367_orig.jpg', '減壓閥．安全閥', '需要減壓閥的規格或報價？', '告訴我們您的使用條件，
+我們幫您挑選合適的產品。', 1, 5, NULL, '寔黈企業減壓閥．安全閥產品：安全閥、減壓閥。', NULL, 0, 1794325064, 1794325064);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('relief-safety-valve', '安全閥', '/images/1838516367_orig.jpg', '安全閥', 0);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('relief-safety-valve', '減壓閥', '/images/484241158_orig.jpg', '減壓閥', 1);
-INSERT INTO product_categories (slug, name, tile_name, nav_name, footer_name, intro_html, card_image, keywords, contact_eyebrow, contact_heading, show_on_home, sort_order, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('globe-valve', '球型閥．截止閥', '球型閥 ｜ 截止閥', '球型閥．截止閥', '球型閥．截止閥', '', '/images/1042141561_orig.jpg', '▎球 型 閥 ． 截 止 閥', '需要球型閥的規格或報價？', '告訴我們您的使用條件，
-我們幫您挑選合適的產品。', 1, 6, NULL, '寔黈企業球型閥．截止閥產品：截止閥、球型閥。', NULL, 0, 1792586990, 1792586990);
+INSERT INTO product_categories (slug, name, tile_name, nav_name, footer_name, intro_html, card_image, keywords, contact_eyebrow, contact_heading, show_on_home, sort_order, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('globe-valve', '球型閥．截止閥', '球型閥 ｜ 截止閥', '球型閥．截止閥', '球型閥．截止閥', '', '/images/1042141561_orig.jpg', '球型閥．截止閥', '需要球型閥的規格或報價？', '告訴我們您的使用條件，
+我們幫您挑選合適的產品。', 1, 6, NULL, '寔黈企業球型閥．截止閥產品：截止閥、球型閥。', NULL, 0, 1794325064, 1794325064);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('globe-valve', '截止閥', '/images/1042141561_orig.jpg', '截止閥', 0);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('globe-valve', '球型閥', '/images/1732402102_orig.jpg', '球型閥', 1);
-INSERT INTO product_categories (slug, name, tile_name, nav_name, footer_name, intro_html, card_image, keywords, contact_eyebrow, contact_heading, show_on_home, sort_order, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('control-valve', '控制閥．自動控制閥', '自控閥 ｜ 控制閥', '自控閥．控制閥', '控制閥．自動控制閥', '', '/images/937515201_orig.jpg', '▎控 制 閥 ． 自 動 控 制 閥', '需要控制閥的規格或報價？', '告訴我們您的使用條件，
-我們幫您挑選合適的產品。', 1, 7, NULL, '寔黈企業控制閥．自動控制閥產品：隔膜式、氣缸式。', NULL, 0, 1792586990, 1792586990);
+INSERT INTO product_categories (slug, name, tile_name, nav_name, footer_name, intro_html, card_image, keywords, contact_eyebrow, contact_heading, show_on_home, sort_order, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('control-valve', '控制閥．自動控制閥', '自控閥 ｜ 控制閥', '自控閥．控制閥', '控制閥．自動控制閥', '', '/images/937515201_orig.jpg', '控制閥．自動控制閥', '需要控制閥的規格或報價？', '告訴我們您的使用條件，
+我們幫您挑選合適的產品。', 1, 7, NULL, '寔黈企業控制閥．自動控制閥產品：隔膜式、氣缸式。', NULL, 0, 1794325064, 1794325064);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('control-valve', '隔膜式', '/images/937515201_orig.jpg', '隔膜式', 0);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('control-valve', '氣缸式', '/images/1739411227_orig.jpg', '氣缸式', 1);
 INSERT INTO product_categories (slug, name, tile_name, nav_name, footer_name, intro_html, card_image, keywords, contact_eyebrow, contact_heading, show_on_home, sort_order, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('repair-accessories', '配件安裝．氣動閥維修', '配件安裝 ｜ 維修', '配件安裝．維修', '配件安裝．氣動閥維修', '', '/images/07_orig.jpg', '防爆型微動開關,顯示型微動開關,閥門定位器,限位開關,空氣調理組,三點組合,兩點組合,氣動閥門配件,氣動蝶閥配件,氣動執行器配件,氣缸配件,閥架,閥托架,球閥支架,蝶閥支架,閥門連接架', '需要配件安裝的規格或報價？', '告訴我們您的使用條件，
-我們幫您挑選合適的產品。', 0, 8, NULL, '寔黈企業配件安裝．氣動閥維修產品：配件安裝實例 01、配件安裝實例 02、配件安裝實例 03、配件安裝實例 04。', NULL, 0, 1792586990, 1792586990);
+我們幫您挑選合適的產品。', 0, 8, NULL, '寔黈企業配件安裝．氣動閥維修產品：配件安裝實例 01、配件安裝實例 02、配件安裝實例 03、配件安裝實例 04。', NULL, 0, 1794325064, 1794325064);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('repair-accessories', '配件安裝實例 01', '/images/07_orig.jpg', '配件安裝實例 01', 0);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('repair-accessories', '配件安裝實例 02', '/images/10_orig.jpg', '配件安裝實例 02', 1);
 INSERT INTO products (category_slug, name, image, image_alt, sort_order) VALUES ('repair-accessories', '配件安裝實例 03', '/images/0666_orig.jpg', '配件安裝實例 03', 2);
@@ -84,7 +84,7 @@ INSERT INTO posts (slug, title, excerpt, tag, content_html, cover_image, cover_a
 <p>依據工作需求的不同也可以裝配不同的配件<br>例如<strong>電磁閥</strong>、<strong>三點組合</strong>、<strong>微動開關</strong>和<strong>閥門定位器</strong>等</p>
 <p class="ref"><strong>參考連結 - <a href="/info/air-preparation-frl-unit">為什麼要加裝三點組合？維持、穩固你的生產效率！</a></strong></p>
 <p class="ref">參考連結 - <strong><a href="/info/pneumatic-valve-solenoid-valve">氣動閥加裝電磁閥，使工作系統更有效率</a></strong></p>
-<figure><img src="/images/56158095-2849104265313889-8562349507411443712-o.jpg" alt="" loading="lazy"></figure>', '/images/56158095-2849104265313889-8562349507411443712-o.jpg', '', 0, 'published', 1588176000, NULL, NULL, NULL, 0, 1588176000, 1792586990);
+<figure><img src="/images/56158095-2849104265313889-8562349507411443712-o.jpg" alt="" loading="lazy"></figure>', '/images/56158095-2849104265313889-8562349507411443712-o.jpg', '', 0, 'published', 1588176000, NULL, NULL, NULL, 0, 1588176000, 1794325064);
 INSERT INTO posts (slug, title, excerpt, tag, content_html, cover_image, cover_alt, cover_fit, status, published_at, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('pneumatic-valve-troubleshooting', '氣動閥做動不正常的原因，快看看有沒有幫助到你！', '從氣缸、閥體到配件逐一檢查常見的故障原因。', '資訊', '<p><strong>若您使用氣動閥門遇到故障或維修等問題，歡迎聯繫我們，寔黈將盡可能的提供協助。</strong><br>造成氣動閥故障的因素有很多，為了能讓您在第一時間發現、解決故障問題，以下由寔黈整理造成氣動閥故障的可能。</p>
 <figure><img src="/images/s-531562498_1.jpg" alt="" loading="lazy"></figure>
 <h2>氣缸</h2>
@@ -93,14 +93,14 @@ INSERT INTO posts (slug, title, excerpt, tag, content_html, cover_image, cover_a
 <ul><li>軸心偏心、受損</li><li>蝶閥膠圈摩擦力過大</li><li>閥門內部有雜質異物</li><li>閥門與氣缸型號規格不符</li><li>與氣缸裝配不確實</li><li>閥門內部潤滑不足</li></ul>
 <figure><img src="/images/s-401833989.jpg" alt="" loading="lazy"></figure>
 <h2>配件</h2>
-<ul><li>電氣配件正負極接反</li><li>配件軸心不在氣缸工作軸線上</li><li>管路銜接處氣體洩漏</li><li>電磁閥電壓不正確</li><li>電磁閥氣孔位置裝配錯誤</li><li>電磁閥線圈燒壞受損</li><li>空氣調理組(三點組合)未正確設置</li><li>配件裝配造成阻力過大</li><li>顯示型微動開關內部凸輪位移</li></ul>', '/images/s-531562498_1.jpg', '', 0, 'published', 1555948800, NULL, NULL, NULL, 0, 1555948800, 1792586990);
+<ul><li>電氣配件正負極接反</li><li>配件軸心不在氣缸工作軸線上</li><li>管路銜接處氣體洩漏</li><li>電磁閥電壓不正確</li><li>電磁閥氣孔位置裝配錯誤</li><li>電磁閥線圈燒壞受損</li><li>空氣調理組(三點組合)未正確設置</li><li>配件裝配造成阻力過大</li><li>顯示型微動開關內部凸輪位移</li></ul>', '/images/s-531562498_1.jpg', '', 0, 'published', 1555948800, NULL, NULL, NULL, 0, 1555948800, 1794325064);
 INSERT INTO posts (slug, title, excerpt, tag, content_html, cover_image, cover_alt, cover_fit, status, published_at, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('after-sales-service', '售後不理？還是讓專業的來吧！', '選擇有經驗、服務完整的廠商，長期來看更安心。', '討論', '<p>工業不斷進步，閥門相關產業當然也是日益競爭，常見的台牌、日牌、德國和義大利等，市面上還有許多來路不明的產品，甚至有客戶送來連商標LOGO都沒有的產品請我們檢修，因為他們找不到原廠處理產品後續問題，這些產品能提供好的品質嗎？<br>網路發達的現今，只需要運用電腦的基本操作以及基礎的買進賣出能力，任何人都可以開起店鋪做起生意，<strong>但是專業程度卻遠不及於真正深耕在此業的專家</strong>，他們提供的產品真的有保障嗎？</p>
 <figure><img src="/images/99999999.jpg" alt="" loading="lazy"></figure>
 <h2>只賣產品不賣服務</h2>
 <p>開發新客戶的困難度比留住舊客戶多了五到七倍，有許多企業為了拓展客源而投入了許多的金錢與資源，但同時卻忽略了原有的客戶群，忽略了客戶使用產品後的需求。<br>售後服務就是協助客戶關於產品使用的疑問及後續維修等問題，然而沒有人會嫌商品價格低，價格卻跟品質、售後服務大有關係。<br><strong>沒有任何一種產品是永遠不壞的，所以售後服務是一種必然的存在，也是專業廠家必備的條件之一</strong>，如果產品使用期間遇到任何問題，但供貨的廠商無法替你解決，甚至是沒有能力替你解決，最後也只能摸摸鼻子說服自己一分錢一分貨，下次不再跟這間廠商配合。</p>
 <h2>那何不一開始就選擇最專業的製造商呢？</h2>
 <figure><img src="/images/s-401833989.jpg" alt="" loading="lazy"></figure>
-<p>寔黈擁有真正專業的技術、經驗及完善的售後服務，我們會用累積近四十年的專業與經驗幫助客戶解決問題。<br>我們非常專業於<strong>氣動閥門</strong>、<strong>氣動執行器</strong><strong>及</strong><strong>相關配件</strong>，不論是產品的提供、客製化的加工及組裝和產品維修等等，只要是<strong>氣動閥門</strong>相關，寔黈皆能給予最完善的服務，用高品質的產品及服務，與您在日益競爭的市場中攜手前進。</p>', '/images/99999999.jpg', '', 0, 'published', 1542643200, NULL, NULL, NULL, 0, 1542643200, 1792586990);
+<p>寔黈擁有真正專業的技術、經驗及完善的售後服務，我們會用累積近四十年的專業與經驗幫助客戶解決問題。<br>我們非常專業於<strong>氣動閥門</strong>、<strong>氣動執行器</strong><strong>及</strong><strong>相關配件</strong>，不論是產品的提供、客製化的加工及組裝和產品維修等等，只要是<strong>氣動閥門</strong>相關，寔黈皆能給予最完善的服務，用高品質的產品及服務，與您在日益競爭的市場中攜手前進。</p>', '/images/99999999.jpg', '', 0, 'published', 1542643200, NULL, NULL, NULL, 0, 1542643200, 1794325064);
 INSERT INTO posts (slug, title, excerpt, tag, content_html, cover_image, cover_alt, cover_fit, status, published_at, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('pneumatic-valve-solenoid-valve', '氣動閥加裝電磁閥，使工作系統更有效率', '電磁閥讓電控訊號能遠端操作氣動閥。', '資訊', '<p>電磁閥是以電磁線圈通、斷電來控制空氣源與氣動執行器（以下稱氣缸）的配合，<br>進而控制氣動閥門啟閉或改變流量及流向的目的，為電控系統與執行機構中重要的角色。</p>
 <p><strong>電磁閥</strong>簡單來說就是氣動閥與空氣源之間的控制元件，<strong>以電力即可控制氣動執行器對應氣動閥的作動</strong>，讓你的流體運輸系統操作更加準確且距離不受限制。</p>
 <div class="callout"><h2>氣動閥為什麼還要加裝電磁閥？</h2><p>因自動化設備越來越廣泛，許多生產作業由電控系統控制<br>操作人員於電控室即可同時控制多部機台以減少人力資源<br><strong>在高危險性或惡劣的環境遠端操作更可增加工作人員安全性</strong></p></div>
@@ -110,7 +110,7 @@ INSERT INTO posts (slug, title, excerpt, tag, content_html, cover_image, cover_a
 <p>五口二位電磁閥斷電時，因磁力消失使彈簧推動閥芯回彈，空氣壓力源（藍色部分）進入電磁閥後由A孔輸入至氣缸內，氣缸內部空氣則改由B孔排出（綠色部分）。如下圖所示。</p>
 <figure><img src="/images/643604321.jpg" alt="" loading="lazy"></figure>
 <p>電磁閥的功能及型式相當多，寔黈氣動執行器系列產品皆配合使用<strong>五口二位電磁閥</strong>，與<strong>三點組合</strong>一同使用更可以有效增加電磁閥及氣缸壽命。</p>
-<p class="ref"><strong>參考連結 - <a href="/info/air-preparation-frl-unit">為什麼要加裝三點組合？維持、穩固你的生產效率！</a></strong></p>', '/images/774342598.jpg', '', 1, 'published', 1530460800, NULL, NULL, NULL, 0, 1530460800, 1792586990);
+<p class="ref"><strong>參考連結 - <a href="/info/air-preparation-frl-unit">為什麼要加裝三點組合？維持、穩固你的生產效率！</a></strong></p>', '/images/774342598.jpg', '', 1, 'published', 1530460800, NULL, NULL, NULL, 0, 1530460800, 1794325064);
 INSERT INTO posts (slug, title, excerpt, tag, content_html, cover_image, cover_alt, cover_fit, status, published_at, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('five-common-valve-types', '閥門種類分不清楚嗎？三分鐘讓你認識五種常見的閥門', '比較五種常見閥門的作動原理與優缺點。', '資訊', '<p>閥門為流體運輸系統中重要的調節裝置，基本可控制流體的開關、流量和流向等功能。<br>
 閥門的種類及規格繁多，不同的工作環境和工作需求所使用的閥門也不相同，<br>
 以下說明5種常見閥類的工作原理及優缺點。</p>
@@ -172,14 +172,14 @@ INSERT INTO posts (slug, title, excerpt, tag, content_html, cover_image, cover_a
 </ul></div><div><h2>缺點：</h2><ul>
 <li>流通口徑大，不適用小流量控制</li>
 <li>密封膠圈易受工作溫度及壓力影響</li>
-</ul></div></div>', '/images/ball.jpg', '', 1, 'published', 1528387200, NULL, NULL, NULL, 0, 1528387200, 1792586990);
+</ul></div></div>', '/images/ball.jpg', '', 1, 'published', 1528387200, NULL, NULL, NULL, 0, 1528387200, 1794325064);
 INSERT INTO posts (slug, title, excerpt, tag, content_html, cover_image, cover_alt, cover_fit, status, published_at, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('valve-seat-seal-material-guide', '球閥球墊、閥座、蝶閥膠圈材質選用參考', '依工作條件挑選閥座與膠圈材質。', '資訊', '<p>膠圈、閥座可依照不同的工作需求及工作環境，選擇最適合的材質<br>詳細資訊請來電洽詢，以下表格僅提供參考</p>
 <figure><img src="/images/350736026.png" alt="" loading="lazy"></figure>
-<p><strong>◆ 以上資訊為廠商提供數據以及依經驗所提供的建議，請依照需求與實際經驗選用。</strong></p>', '/images/350736026.png', '', 1, 'published', 1527436800, NULL, NULL, NULL, 0, 1527436800, 1792586990);
+<p><strong>◆ 以上資訊為廠商提供數據以及依經驗所提供的建議，請依照需求與實際經驗選用。</strong></p>', '/images/350736026.png', '', 1, 'published', 1527436800, NULL, NULL, NULL, 0, 1527436800, 1794325064);
 INSERT INTO posts (slug, title, excerpt, tag, content_html, cover_image, cover_alt, cover_fit, status, published_at, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('before-comparing-valve-prices', '在比較價格之前，應該要知道的是...', '整體價值比標價更重要。', '討論', '<p>氣動閥門相關品牌非常多，從一般的台製到進口的日製、美製，甚至義大利、德國等等，各廠牌的產品都有各自的優勢所在。<br>要怎麼樣才能從眾多廠牌中搶到訂單，品質和價格都是關鍵。</p>
 <figure><img src="/images/christopher-burns-360244-unsplash.jpg" alt="" loading="lazy"></figure>
 <p>各個廠牌的氣動閥門從外觀上看起來都沒有太大的差異，但漂亮的價格背後往往犧牲的是產品耐用度。<br>有個跟我們合作十多年的老朋友，中間使用過他牌氣動閥但最後還是選擇了寔黈，說其他廠牌量大購入當備品價錢還能更漂亮，但是時間拉長發現產品的耐用程度就擺在眼前，反覆的上下機拆裝消耗了許多人力跟時間，每次的更換或維修就必須暫停整部機台，影響了產線的工作進度。<br><strong>價格與價值是一體兩面，而價格的背後往往隱藏著代價</strong>。<br>決定價格的不只有製造成本，看不見的研發成本、設計成本、售後服務等，都是影響價格的關鍵因素。</p>
-<p><strong>品質一直是寔黈所堅持的，寔黈希望能提供穩定且高於市場品質的產品給每位使用者</strong>。</p>', '/images/christopher-burns-360244-unsplash.jpg', '', 0, 'published', 1526832000, NULL, NULL, NULL, 0, 1526832000, 1792586990);
+<p><strong>品質一直是寔黈所堅持的，寔黈希望能提供穩定且高於市場品質的產品給每位使用者</strong>。</p>', '/images/christopher-burns-360244-unsplash.jpg', '', 0, 'published', 1526832000, NULL, NULL, NULL, 0, 1526832000, 1794325064);
 INSERT INTO posts (slug, title, excerpt, tag, content_html, cover_image, cover_alt, cover_fit, status, published_at, seo_title, seo_description, og_image, noindex, created_at, updated_at) VALUES ('air-preparation-frl-unit', '為什麼要加裝三點組合？維持、穩固你的生產效率', '過濾、調壓、給油，穩定後端元件。', '資訊', '<p>通常在氣壓設備系統中空壓機輸出端會加裝三點組合，而客戶指定氣缸加裝電磁閥時，我們也會建議使用者加裝三點組合。<br>當空氣從空壓機等設備輸出時，壓縮空氣中含有雜質、水氣及油份，若沒安裝三點組合可能會使管路及氣缸等空氣流經過部分生鏽、氧化甚至磨損。</p>
 <div class="callout"><p><strong>三點組合又稱為空氣調理組其功能為：<br>．過濾：空氣濾清<br>．調壓：調整壓力<br>．給油：給予潤滑</strong></p></div>
 <figure><img src="/images/08.jpg" alt="" loading="lazy"></figure>
@@ -188,14 +188,14 @@ INSERT INTO posts (slug, title, excerpt, tag, content_html, cover_image, cover_a
 <h2>調壓：調整壓力</h2>
 <p>調整壓縮空氣減壓至工作壓力後輸出，壓力表可讀輸出之壓力大小。壓力調整只能減壓無法加壓。假設輸入壓力為5bar，則調整後輸出壓力僅能低於5bar，無法高於輸入壓力。</p>
 <h2>給油：給予潤滑</h2>
-<p>利用文氏管原理將油杯內的潤滑油和空氣混合，混合後成油霧狀輸出，使管路、電磁閥等等相關配件及氣缸內部零件潤滑，維持其功能及延長使用壽命。</p>', '/images/08.jpg', '', 0, 'published', 1525708800, NULL, NULL, NULL, 0, 1525708800, 1792586990);
+<p>利用文氏管原理將油杯內的潤滑油和空氣混合，混合後成油霧狀輸出，使管路、電磁閥等等相關配件及氣缸內部零件潤滑，維持其功能及延長使用壽命。</p>', '/images/08.jpg', '', 0, 'published', 1525708800, NULL, NULL, NULL, 0, 1525708800, 1794325064);
 DELETE FROM redirects WHERE from_path LIKE '/info/post-%.html';
-INSERT INTO redirects (from_path, to_path, created_at) VALUES ('/info/post-200430.html', '/info/how-pneumatic-valves-work', 1792586990);
-INSERT INTO redirects (from_path, to_path, created_at) VALUES ('/info/post-190423.html', '/info/pneumatic-valve-troubleshooting', 1792586990);
-INSERT INTO redirects (from_path, to_path, created_at) VALUES ('/info/post-181120.html', '/info/after-sales-service', 1792586990);
-INSERT INTO redirects (from_path, to_path, created_at) VALUES ('/info/post-180702.html', '/info/pneumatic-valve-solenoid-valve', 1792586990);
-INSERT INTO redirects (from_path, to_path, created_at) VALUES ('/info/post-180608.html', '/info/five-common-valve-types', 1792586990);
-INSERT INTO redirects (from_path, to_path, created_at) VALUES ('/info/post-180528.html', '/info/valve-seat-seal-material-guide', 1792586990);
-INSERT INTO redirects (from_path, to_path, created_at) VALUES ('/info/post-180521.html', '/info/before-comparing-valve-prices', 1792586990);
-INSERT INTO redirects (from_path, to_path, created_at) VALUES ('/info/post-180508.html', '/info/air-preparation-frl-unit', 1792586990);
+INSERT INTO redirects (from_path, to_path, created_at) VALUES ('/info/post-200430.html', '/info/how-pneumatic-valves-work', 1794325064);
+INSERT INTO redirects (from_path, to_path, created_at) VALUES ('/info/post-190423.html', '/info/pneumatic-valve-troubleshooting', 1794325064);
+INSERT INTO redirects (from_path, to_path, created_at) VALUES ('/info/post-181120.html', '/info/after-sales-service', 1794325064);
+INSERT INTO redirects (from_path, to_path, created_at) VALUES ('/info/post-180702.html', '/info/pneumatic-valve-solenoid-valve', 1794325064);
+INSERT INTO redirects (from_path, to_path, created_at) VALUES ('/info/post-180608.html', '/info/five-common-valve-types', 1794325064);
+INSERT INTO redirects (from_path, to_path, created_at) VALUES ('/info/post-180528.html', '/info/valve-seat-seal-material-guide', 1794325064);
+INSERT INTO redirects (from_path, to_path, created_at) VALUES ('/info/post-180521.html', '/info/before-comparing-valve-prices', 1794325064);
+INSERT INTO redirects (from_path, to_path, created_at) VALUES ('/info/post-180508.html', '/info/air-preparation-frl-unit', 1794325064);
 COMMIT;

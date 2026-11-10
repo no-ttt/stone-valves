@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { ArrowRight } from "@/components/icons";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SiteMenu } from "@/components/SiteMenu";
 import { imageUrl } from "@/lib/images";
 import "./(site)/site.css";
 
@@ -30,6 +31,7 @@ export default function NotFound() {
         </div>
       </Hero>
       <SiteFooter />
+      <SiteMenu />
     </div>
   );
 }

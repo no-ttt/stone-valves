@@ -89,7 +89,7 @@ export const categories: Category[] = [
     footerName: "閘閥．閘板閥",
     seoTitle: "閘閥．閘板閥",
     seoDescription: "寔黈企業閘閥．閘板閥產品：閘閥。",
-    keywords: ["▎閘 閥 ． 閘板閥"],
+    keywords: ["閘閥．閘板閥"],
     cardImage: "/images/1002776453_orig.jpg",
     products: [
       { name: "閘閥", image: "/images/1002776453_orig.jpg" },
@@ -122,7 +122,7 @@ export const categories: Category[] = [
     footerName: "減壓閥．安全閥",
     seoTitle: "減壓閥．安全閥",
     seoDescription: "寔黈企業減壓閥．安全閥產品：安全閥、減壓閥。",
-    keywords: ["▎減 壓 閥 ． 安 全 閥"],
+    keywords: ["減壓閥．安全閥"],
     cardImage: "/images/1838516367_orig.jpg",
     products: [
       { name: "安全閥", image: "/images/1838516367_orig.jpg" },
@@ -139,7 +139,7 @@ export const categories: Category[] = [
     footerName: "球型閥．截止閥",
     seoTitle: "球型閥．截止閥",
     seoDescription: "寔黈企業球型閥．截止閥產品：截止閥、球型閥。",
-    keywords: ["▎球 型 閥 ． 截 止 閥"],
+    keywords: ["球型閥．截止閥"],
     cardImage: "/images/1042141561_orig.jpg",
     products: [
       { name: "截止閥", image: "/images/1042141561_orig.jpg" },
@@ -156,7 +156,7 @@ export const categories: Category[] = [
     footerName: "控制閥．自動控制閥",
     seoTitle: "控制閥．自動控制閥",
     seoDescription: "寔黈企業控制閥．自動控制閥產品：隔膜式、氣缸式。",
-    keywords: ["▎控 制 閥 ． 自 動 控 制 閥"],
+    keywords: ["控制閥．自動控制閥"],
     cardImage: "/images/937515201_orig.jpg",
     products: [
       { name: "隔膜式", image: "/images/937515201_orig.jpg" },
