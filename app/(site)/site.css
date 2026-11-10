@@ -290,11 +290,9 @@ select:hover{border-color:var(--green)}
 .foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding:20px max(32px,calc((100% - 1400px)/2));border-top:1px solid rgba(255,255,255,.10);font-size:13px;color:#949E9A}
 
 /* ========== 動態效果 ========== */
-/* 第一次開網頁：頁首進場、捲動淡入（components/Motion.tsx 加上 .motion / .reveal） */
-@keyframes pageIn{from{opacity:0}to{opacity:1}}
+/* 進場動畫：.motion 由 app/layout.tsx 在第一次繪製前加上；捲動淡入的 .reveal 由 components/Motion.tsx 加上 */
 @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 @keyframes drop{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
-.motion body{animation:pageIn .45s ease both}
 .motion .hero .topbar{animation:drop .7s cubic-bezier(.2,.7,.2,1) .05s both}
 /* 換頁後 header 不重播進場動畫（Motion.tsx 在第一次載入完成後加上 .settled） */
 .settled .hero .topbar,.settled.motion .hero .topbar{animation:none}
@@ -326,6 +324,29 @@ select:hover{border-color:var(--green)}
   ::view-transition-old(.page-out),::view-transition-new(.page-in){animation:none}
 }
 
+/* ========== 手機版選單（components/MobileMenu.tsx）：760px 以下才出現 ========== */
+.menu-btn,.m-menu{display:none}
+@media (max-width:760px){
+  .menu-btn{display:inline-flex;align-items:center;justify-content:center;flex:none;width:44px;height:44px;padding:0;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:#fff;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .m-menu{display:flex;flex-direction:column;position:fixed;inset:0;z-index:100;overflow-x:hidden;overflow-y:auto;padding:14px 16px calc(28px + env(safe-area-inset-bottom));background:#13261F;color:#fff;opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility 0s linear .35s}
+  .m-menu.open{opacity:1;visibility:visible;transition:opacity .35s var(--ease),visibility 0s}
+  .m-menu:focus{outline:none}
+  .m-menu-top{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .m-menu-nav{position:relative;z-index:1;margin-top:56px;display:flex;flex-direction:column}
+  .m-menu-nav a{position:relative;display:flex;align-items:baseline;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.62);text-decoration:none;font-size:18px;font-weight:500;letter-spacing:.06em;opacity:0;transform:translateY(14px);transition:opacity .45s var(--ease),transform .45s var(--ease),color .25s}
+  .m-menu-nav a:first-child{border-top:1px solid rgba(255,255,255,.1)}
+  .m-menu.open .m-menu-nav a{opacity:1;transform:none;transition-delay:calc(var(--i,0) * 50ms + 80ms),calc(var(--i,0) * 50ms + 80ms),0s}
+  .m-menu-num{flex:none;width:20px;font-size:11px;font-weight:500;letter-spacing:.12em;color:var(--mist);font-variant-numeric:tabular-nums}
+  /* 目前所在的頁面：白字，右側一條短線 */
+  .m-menu-nav a[aria-current="page"]{color:#fff}
+  .m-menu-nav a[aria-current="page"]::after{content:"";margin-left:auto;align-self:center;width:18px;height:2px;border-radius:2px;background:#fff}
+  .m-menu-nav a:active{color:#fff}
+  .m-menu-contact{position:relative;z-index:1;margin-top:auto;padding-top:48px;display:flex;flex-direction:column;gap:10px}
+  .m-menu-label{margin-bottom:4px;font-size:12px;letter-spacing:.2em;color:var(--mist)}
+  .m-menu-contact .btn{justify-content:center;min-height:44px;font-size:14px}
+  .m-menu-lines{position:fixed;right:-200px;bottom:-140px;width:520px;height:520px;pointer-events:none}
+}
+
 /* ========== 中等寬度 ========== */
 @media (max-width:1100px){
   .grid.c3,.grid.c4{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -343,17 +364,14 @@ select:hover{border-color:var(--green)}
   .section-head h2{font-size:26px}
   .section-head .btn{min-height:40px;padding:0 16px;font-size:14px}
 
-  /* 頁首：logo 與聯繫按鈕縮小，選單平均分配 */
+  /* 頁首：只留 logo 和選單按鈕（主選單、聯繫我們收進 MobileMenu） */
   .hero{min-height:auto!important;padding:14px 16px}
-  .topbar{gap:12px}
+  .topbar{gap:12px;flex-wrap:nowrap}
+  .topbar > .nav,.topbar > .btn{display:none}
   .brand{padding:0;gap:10px}
   .brand img{width:34px;height:34px}
   .brand-name b{font-size:16px}
   .brand-name small{font-size:11px}
-  .nav{order:3;width:100%;justify-content:space-between;padding:4px;gap:2px}
-  .nav a{flex:1 1 0;justify-content:center;min-height:38px;padding:0 6px;font-size:13px}
-  .topbar > .btn{min-height:36px;padding:0 13px;font-size:13px;gap:6px}
-  .topbar > .btn svg{width:13px;height:13px}
   .hero-copy{padding:32px 0 16px}
   .crumbs{margin-bottom:12px}
   .hero h1{font-size:36px}
@@ -433,7 +451,6 @@ select:hover{border-color:var(--green)}
   .foot-inner{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:380px){
-  .nav a{font-size:12px;padding:0 4px}
   .hero h1{font-size:32px}
   .hero.mid h1,.hero.short h1{font-size:26px}
 }

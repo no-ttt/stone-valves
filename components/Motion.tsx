@@ -36,7 +36,10 @@ export function Motion() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     document.documentElement.classList.add("motion");
 
-    const els = Array.from(document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR));
+    // 已經在畫面內的元素不做捲動淡入（不然會先顯示、再變透明、再淡入，像閃一下）
+    const els = Array.from(document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR)).filter(
+      (el) => el.getBoundingClientRect().top > window.innerHeight,
+    );
     for (const el of els) {
       const sibs = el.parentElement ? Array.from(el.parentElement.children).filter((c) => c.matches(REVEAL_SELECTOR)) : [];
       el.style.setProperty("--d", `${Math.min(Math.max(0, sibs.indexOf(el)), 7) * 70}ms`);

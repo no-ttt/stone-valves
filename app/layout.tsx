@@ -33,10 +33,21 @@ export const viewport: Viewport = {
   themeColor: "#1E3932",
 };
 
+/**
+ * 在畫面第一次繪製前就決定要不要播進場動畫（components/Motion.tsx、site.css 的「動態效果」）：
+ * - motion：開啟進場動畫。等 React 接手後才加會讓已經顯示的內容瞬間變透明再淡入，看起來像閃一下
+ * - settled：這次瀏覽已經看過網站（例如 GitHub Pages 每次點連結都是整頁重新載入），header 不再重播進場
+ */
+const MOTION_BOOT = `try{var d=document.documentElement;if(!matchMedia("(prefers-reduced-motion: reduce)").matches)d.classList.add("motion");if(sessionStorage.getItem("sv-visited"))d.classList.add("settled");sessionStorage.setItem("sv-visited","1")}catch(e){}`;
+
 /** 前台在 app/(site)，後台在 app/admin，各自有自己的版面與樣式 */
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-Hant-TW" className={`${poppins.variable} ${notoSansTC.variable}`}>
+    // suppressHydrationWarning：下面的 script 會在 React 接手前就幫 <html> 加上 class
+    <html lang="zh-Hant-TW" className={`${poppins.variable} ${notoSansTC.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: MOTION_BOOT }} />
+      </head>
       <body>{children}</body>
     </html>
   );
