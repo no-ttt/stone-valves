@@ -60,9 +60,10 @@ h1,h2,h3{line-height:1.3}
 
 /* ========== 按鈕 ========== */
 .btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;font-weight:500;text-decoration:none;font-size:15px;border:0;font-family:inherit;cursor:pointer;transition:background-color .2s,color .2s,transform .2s,box-shadow .2s}
-.btn:hover{transform:translateY(-1px)}
+/* 滑過才有的動態（位移、展開、放大）只給有滑鼠的裝置；手機觸控滑動時碰到不會觸發 */
+@media (hover:hover){.btn:hover{transform:translateY(-1px)}}
 .btn svg{flex:none;transition:transform .2s}
-.btn:hover svg{transform:translateX(3px)}
+@media (hover:hover){.btn:hover svg{transform:translateX(3px)}}
 .btn-light{background:var(--ground);color:var(--green)}
 .btn-light:hover{background:#fff;color:var(--green)}
 .btn-glass{color:#fff}
@@ -101,11 +102,11 @@ h1,h2,h3{line-height:1.3}
 .pcard-title.clamp{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-weight:700;font-size:17px;line-height:26px}
 .pcard-divider{display:inline-block;width:1px;height:.9em;background:#c6cac8;margin:0 12px}
 .pcard-count{flex:none;font-size:13px;color:#6b716f;white-space:nowrap}
-.pcard:hover{border-color:transparent;box-shadow:0 20px 40px -22px rgba(31,61,54,.45)}
-.pcard:hover .pcard-media{border-color:transparent}
-.pcard:hover .pcard-media img{transform:scale(1.07)}
-.pcard:hover .pcard-go{background:#1f3d36;color:#fff;gap:5px;padding:0 11px}
-.pcard:hover .pcard-go-label{max-width:70px;opacity:1}
+@media (hover:hover){.pcard:hover{border-color:transparent;box-shadow:0 20px 40px -22px rgba(31,61,54,.45)}}
+@media (hover:hover){.pcard:hover .pcard-media{border-color:transparent}}
+@media (hover:hover){.pcard:hover .pcard-media img{transform:scale(1.07)}}
+@media (hover:hover){.pcard:hover .pcard-go{background:#1f3d36;color:#fff;gap:5px;padding:0 11px}}
+@media (hover:hover){.pcard:hover .pcard-go-label{max-width:70px;opacity:1}}
 .pcard:active .pcard-go{transform:scale(.94)}
 .pcard:focus-visible{outline:2px solid #1f3d36;outline-offset:3px}
 @media (hover:none){.pcard:active{transform:scale(.97)}}
@@ -139,16 +140,19 @@ select:hover{border-color:var(--green)}
 .intro-media{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .intro-media .panel{display:flex;align-items:center;justify-content:center;padding:0;min-height:0;border-radius:var(--radius-lg)}
 .intro-media img{max-height:320px;filter:drop-shadow(0 18px 18px rgba(31,61,54,.12));transition:transform 1.1s var(--ease),filter 1.1s var(--ease)}
-.intro-media .panel:hover img{transform:translateY(-6px) rotate(-1.5deg) scale(1.02);filter:drop-shadow(0 24px 22px rgba(31,61,54,.15))}
-.intro-media .panel:nth-child(2):hover img{transform:translateY(-6px) rotate(1.5deg) scale(1.02)}
+@media (hover:hover){.intro-media .panel:hover img{transform:translateY(-6px) rotate(-1.5deg) scale(1.02);filter:drop-shadow(0 24px 22px rgba(31,61,54,.15))}}
+@media (hover:hover){.intro-media .panel:nth-child(2):hover img{transform:translateY(-6px) rotate(1.5deg) scale(1.02)}}
 /* 三個特色：大編號在上，圖示在右上，滑過頂線畫出墨綠 */
 .values{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:48px;margin-top:72px}
 .value{position:relative;display:flex;flex-direction:column;gap:0;padding:28px 0 0;border-top:1px solid var(--line)}
 .value::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
-.value:hover::before{transform:scaleX(1)}
+@media (hover:hover){.value:hover::before{transform:scaleX(1)}}
+/* 捲到畫面中時依序畫出頂線（components/Motion.tsx 加上 .seen） */
+.value.seen::before{transform:scaleX(1);transition-delay:calc(var(--vi,0) * 150ms + 100ms)}
 .value .num{order:-1;margin:0;font-size:64px;line-height:1;font-weight:300;letter-spacing:-.03em;color:var(--green)}
 .value .icon{position:absolute;top:28px;right:0;width:44px;height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:var(--tint);color:var(--green);transition:background-color .35s,color .35s}
-.value:hover .icon{background:var(--green);color:#fff}
+@media (hover:hover){.value:hover .icon{background:var(--green);color:#fff}}
+.value.seen .icon{background:var(--green);color:#fff;transition-delay:calc(var(--vi,0) * 150ms + 400ms)}
 .value h3{margin:20px 0 8px;font-size:22px;font-weight:600}
 .value p{margin:0;max-width:320px;color:var(--muted);font-size:15px;line-height:27px}
 .quality{position:relative;overflow:hidden;border-radius:var(--radius-xl);background:var(--green);color:#fff;margin-top:88px;padding:72px max(32px,calc((100% - 1400px)/2));display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:32px}
@@ -233,7 +237,9 @@ select:hover{border-color:var(--green)}
 .article-body .cols > div > figure{margin:0;height:100%;align-items:center}
 .article-body .cols > div > :last-child{margin-bottom:0}
 /* 參考連結：左側細線 */
-.article-body p.ref{position:relative;font-size:15px;color:var(--muted);padding:2px 0 2px 18px}
+.article-body p.ref{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:4px 0 4px 18px;font-size:15px;line-height:26px}
+.article-body p.ref .ref-label{font-size:12px;line-height:18px;font-weight:600;letter-spacing:.2em;color:var(--muted)}
+.article-body p.ref a{font-weight:500;color:var(--green-2)}
 .article-body p.ref::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:2px;border-radius:2px;background:var(--green);opacity:.55}
 .article-body .callout{background:var(--tint);border-radius:var(--radius-lg);padding:28px 32px;margin:28px 0}
 .article-body .callout p:last-child{margin-bottom:0}
@@ -258,10 +264,10 @@ select:hover{border-color:var(--green)}
 .an-title{font-size:17px;line-height:27px;font-weight:600;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .25s}
 .an-circle{flex:none;margin-top:26.5px;display:flex;align-items:center;justify-content:center;color:var(--green);transition:transform .45s var(--ease)}
 .an-circle svg{width:22px;height:22px;transition:transform .45s var(--ease)}
-.an-link:hover .an-label{color:var(--green)}
-.an-link:hover .an-title{color:var(--green)}
-.an-side:not(.next) .an-link:hover .an-circle svg{transform:translateX(-3px)}
-.an-side.next .an-link:hover .an-circle svg{transform:translateX(3px)}
+@media (hover:hover){.an-link:hover .an-label{color:var(--green)}}
+@media (hover:hover){.an-link:hover .an-title{color:var(--green)}}
+@media (hover:hover){.an-side:not(.next) .an-link:hover .an-circle svg{transform:translateX(-3px)}}
+@media (hover:hover){.an-side.next .an-link:hover .an-circle svg{transform:translateX(3px)}}
 .an-link:active .an-circle{transform:scale(.94)}
 .preview-banner{position:sticky;top:0;z-index:50;background:#7A5A1C;color:#fff;text-align:center;font-size:14px;padding:8px 16px}
 
@@ -277,17 +283,26 @@ select:hover{border-color:var(--green)}
 .page > .site-foot{margin-top:104px}
 .page > .contact + .site-foot{margin-top:0}
 .contact + .site-foot{border-top:1px solid rgba(255,255,255,.08)}
-.foot-inner{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.6fr) minmax(0,1.4fr) minmax(0,1fr);gap:40px 56px;padding:64px max(32px,calc((100% - 1400px)/2)) 48px}
-.foot-brand{flex:1 1 280px;max-width:340px;display:flex;flex-direction:column;gap:18px}
-.foot-brand .brand{padding:0}
-.foot-brand p{margin:0;line-height:26px;color:#B3BDB9}
-.site-foot .foot-col{flex:0 1 auto;display:flex;flex-direction:column;gap:10px;min-width:0}
-.site-foot .foot-col.wide{flex:1 1 300px}
-.site-foot .foot-col b{color:#fff;font-weight:600;font-size:15px;margin-bottom:6px}
-.site-foot .foot-cats{display:grid;grid-template-columns:repeat(2,minmax(0,max-content));gap:10px 32px}
-.site-foot a{color:#B3BDB9;text-decoration:none}
+/* 頁尾（components/SiteFooter.tsx）：全部置中。logo 直排；細線分隔；連結與聯絡資訊靠近成一組 */
+.foot-inner{padding:72px max(32px,calc((100% - 1400px)/2)) 56px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.foot-inner .brand{padding:0;flex-direction:column;gap:12px}
+.foot-inner .brand img{width:44px;height:44px}
+.foot-inner .brand-name{align-items:center}
+.foot-inner .brand-name b{font-size:19px;letter-spacing:.08em}
+.foot-inner .brand-name small{margin-top:4px;font-size:11px;letter-spacing:.24em}
+.foot-inner .brand::after{content:"";width:32px;height:1px;margin-top:20px;background:rgba(255,255,255,.22)}
+.foot-nav{margin-top:28px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 44px}
+.foot-nav a{color:#fff;font-size:15px;font-weight:500;letter-spacing:.04em}
+.foot-contact{margin-top:18px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 18px;font-size:14px;color:#9FB0A9}
+.foot-contact address{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 0;font-style:normal}
+/* 三項之間用小圓點隔開 */
+.foot-contact address > * + *::before{content:"";display:inline-block;width:3px;height:3px;margin:0 14px;border-radius:999px;background:#5E6E68;vertical-align:middle}
+.foot-contact a{color:#9FB0A9}
+.foot-social{width:30px;height:30px;border-radius:999px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2);color:#fff!important;transition:background-color .25s,border-color .25s,color .25s}
+.site-foot a{text-decoration:none;transition:color .2s}
 .site-foot a:hover{color:#fff}
-.foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding:20px max(32px,calc((100% - 1400px)/2));border-top:1px solid rgba(255,255,255,.10);font-size:13px;color:#949E9A}
+.site-foot .foot-social:hover{background:#fff;border-color:#fff;color:var(--green)!important}
+.foot-bottom{padding:20px max(32px,calc((100% - 1400px)/2));border-top:1px solid rgba(255,255,255,.10);text-align:center;font-size:13px;color:#949E9A}
 
 /* ========== 動態效果 ========== */
 /* 進場動畫：.motion 由 app/layout.tsx 在第一次繪製前加上；捲動淡入的 .reveal 由 components/Motion.tsx 加上 */
@@ -328,6 +343,8 @@ select:hover{border-color:var(--green)}
 .menu-btn,.m-menu{display:none}
 @media (max-width:760px){
   .menu-btn{display:inline-flex;align-items:center;justify-content:center;flex:none;width:44px;height:44px;padding:0;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:#fff;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  /* header 的選單按鈕固定在畫面右上角，捲動時一直看得到；深色半透明底，在淺色內容上也看得清楚 */
+  .topbar > .menu-btn{position:fixed;top:14px;right:16px;z-index:90;background:rgba(19,38,31,.88);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
   .m-menu{display:flex;flex-direction:column;position:fixed;inset:0;z-index:100;overflow-x:hidden;overflow-y:auto;padding:14px 16px calc(28px + env(safe-area-inset-bottom));background:#13261F;color:#fff;opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility 0s linear .35s}
   .m-menu.open{opacity:1;visibility:visible;transition:opacity .35s var(--ease),visibility 0s}
   .m-menu:focus{outline:none}
@@ -353,7 +370,6 @@ select:hover{border-color:var(--green)}
 }
 @media (max-width:1000px){
   .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .foot-inner{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 
 /* ========== 手機版 ========== */
@@ -428,12 +444,14 @@ select:hover{border-color:var(--green)}
   .contact h2{font-size:28px}
   .contact .btn{justify-content:center;min-height:42px;padding:0 18px;font-size:14px}
   .page > .site-foot{margin-top:64px}
-  .page > .hero + *{margin-top:40px}
-  .foot-inner{padding:48px 16px 32px;gap:28px}
+  .foot-inner{padding:56px 16px 40px}
+  .foot-nav{margin-top:24px;gap:10px 24px}
+  /* 手機上聯絡資訊一行一項，不用圓點；Facebook 放在最下面 */
+  .foot-contact{flex-direction:column;gap:14px}
+  .foot-contact address{flex-direction:column;gap:6px}
+  .foot-contact address > * + *::before{content:none}
   .foot-bottom{padding:16px}
-  /* 頁尾「網站」連結排成兩欄 */
-  .site-foot .foot-col:not(.wide):nth-child(2){display:grid;grid-template-columns:repeat(2,minmax(0,max-content));gap:10px 32px}
-  .site-foot .foot-col:not(.wide):nth-child(2) b{grid-column:1 / -1}
+  .page > .hero + *{margin-top:40px}
 }
 @media (max-width:640px){
   .article-body table{display:block;overflow-x:auto}
@@ -448,7 +466,6 @@ select:hover{border-color:var(--green)}
   .pcard-title.clamp{font-size:14px;line-height:22px}
   .pcard-divider{margin:0 8px}
   .pcard-count{font-size:12px}
-  .foot-inner{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:380px){
   .hero h1{font-size:32px}

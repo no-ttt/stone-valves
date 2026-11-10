@@ -68,6 +68,21 @@ export function Motion() {
     );
     els.forEach((el) => io.observe(el));
 
+    // 首頁三個特色（經驗、品質、服務）：捲到畫面中時依序畫出頂線、圖示變墨綠（樣式見 site.css .value.seen）
+    const values = Array.from(document.querySelectorAll<HTMLElement>(".values > .value"));
+    values.forEach((el, i) => el.style.setProperty("--vi", String(i)));
+    const seenIo = new IntersectionObserver(
+      (entries) => {
+        for (const en of entries) {
+          if (!en.isIntersecting) continue;
+          en.target.classList.add("seen");
+          seenIo.unobserve(en.target);
+        }
+      },
+      { rootMargin: "0px 0px -15% 0px", threshold: 0.6 },
+    );
+    values.forEach((el) => seenIo.observe(el));
+
     const lines = Array.from(document.querySelectorAll<SVGElement>(".hero-lines"));
     let ticking = false;
     const onScroll = () => {
@@ -83,6 +98,7 @@ export function Motion() {
 
     return () => {
       io.disconnect();
+      seenIo.disconnect();
       window.removeEventListener("scroll", onScroll);
       for (const el of els) {
         el.classList.remove("reveal", "in");

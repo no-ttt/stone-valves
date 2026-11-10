@@ -6,7 +6,8 @@ import { ContactBand } from "@/components/ContactBand";
 import { Hero } from "@/components/Hero";
 import { JsonLd } from "@/components/JsonLd";
 import { findRedirect, getContent, getPublishedPost } from "@/lib/data";
-import { absoluteImageUrl, imageUrl, withBasePath } from "@/lib/images";
+import { absoluteImageUrl, imageUrl } from "@/lib/images";
+import { prepareArticleHtml } from "@/lib/article-html";
 import { SITE_URL, companyInfo, formatDate, isoDate } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -62,7 +63,7 @@ export default async function PostPage({ params }: Props) {
           </div>
         </div>
         {/* 內文由後台編輯器產生，存檔時已經過濾（見 lib/sanitize.ts） */}
-        <div className="article-body" dangerouslySetInnerHTML={{ __html: withBasePath(post.contentHtml) }} />
+        <div className="article-body" dangerouslySetInnerHTML={{ __html: prepareArticleHtml(post.contentHtml) }} />
         {/* 上一篇＝較舊的文章（左），下一篇＝較新的文章（右） */}
         <nav className="article-nav" aria-label="其他文章">
           <div className="an-side">

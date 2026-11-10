@@ -9,6 +9,7 @@ import { getContent } from "@/lib/data";
 import { getDb } from "@/lib/db/client";
 import { posts } from "@/lib/db/schema";
 import { imageUrl } from "@/lib/images";
+import { prepareArticleHtml } from "@/lib/article-html";
 import { formatDate, isoDate } from "@/lib/site";
 
 export const metadata: Metadata = { title: "預覽", robots: { index: false, follow: false } };
@@ -39,7 +40,7 @@ export default async function PreviewPostPage({ params }: { params: Promise<{ id
             <time dateTime={isoDate(date)}>{formatDate(date)}</time>
           </div>
         </div>
-        <div className="article-body" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+        <div className="article-body" dangerouslySetInnerHTML={{ __html: prepareArticleHtml(post.contentHtml) }} />
       </article>
       <ContactBand />
     </>

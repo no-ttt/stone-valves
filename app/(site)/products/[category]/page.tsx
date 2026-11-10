@@ -6,7 +6,8 @@ import { ContactBand } from "@/components/ContactBand";
 import { Hero } from "@/components/Hero";
 import { ProductTile } from "@/components/Tiles";
 import { findRedirect, getCategories, getCategory, getContent } from "@/lib/data";
-import { absoluteImageUrl, imageUrl, withBasePath } from "@/lib/images";
+import { absoluteImageUrl, imageUrl } from "@/lib/images";
+import { prepareArticleHtml } from "@/lib/article-html";
 import { SITE_URL } from "@/lib/site";
 
 type Props = { params: Promise<{ category: string }> };
@@ -64,7 +65,7 @@ export default async function CategoryPage({ params }: Props) {
         </div>
         {c.introHtml && (
           // 分類介紹由後台編輯
-          <div className="article-body category-intro" dangerouslySetInnerHTML={{ __html: withBasePath(c.introHtml) }} />
+          <div className="article-body category-intro" dangerouslySetInnerHTML={{ __html: prepareArticleHtml(c.introHtml) }} />
         )}
         <div className="grid">
           {c.products.map((p) => (
